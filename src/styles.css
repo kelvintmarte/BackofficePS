@@ -1,0 +1,17 @@
+/* src/styles.css */
+.dashboard-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .dashboard-button:hover {
+    background-color: #2980b9;
+  }
+  

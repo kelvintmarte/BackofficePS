@@ -40,11 +40,9 @@ export default class CreateParkinglot extends Component {
       totalparking: this.state.totalParking,
       description: this.state.description,
     };
-    axios.post("http://localhost:3000/parking")
-    console.log(`Parkinglot successfully created!`);
-    console.log(`Name: ${this.state.name}`);
-    console.log(`totalParking: ${this.state.totalParking}`);
-    console.log(`description: ${this.state.description}`);
+    axios
+      .post("http://localhost:3000/parking", parkinglotObject)
+      .then((res) => console.log(res.data));
 
     this.setState({ name: "", totalParking: "", description: "" });
   }

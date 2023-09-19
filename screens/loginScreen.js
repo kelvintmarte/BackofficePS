@@ -6,7 +6,7 @@ import {
   Image,
   BackHandler,
 } from "react-native";
-import { 
+import {
   TextInput,
   Snackbar,
   Text,
@@ -15,7 +15,7 @@ import {
 import Icon from 'react-native-paper/src/components/Icon'
 import axios from 'axios';
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
@@ -46,17 +46,17 @@ export default function App({navigation}) {
       email: email.toLowerCase(),
       password: password.toLowerCase(),
     };
-    axios.post('//localhost:3000/user/login', data,  { withCredentials: true })
-    .then(response => {
-      // Handle the response data
-      console.log(response.data);
-      response.data.body.success ? navigation.navigate('Main', {response}) : setCustomAlert({severity: "error", message: response.data.body.message}); onToggleSnackBar(); 
-    })
-    .catch(error => {
-      // Handle any error that occurs during the request
-      console.error(error);
-      setCustomAlert({severity: "error", message: "One or more fields are empty"}); onToggleSnackBar();
-    })
+    axios.post('//localhost:3000/user/login', data, { withCredentials: true })
+      .then(response => {
+        // Handle the response data
+        console.log(response.data);
+        response.data.body.success ? navigation.navigate('Main', { response }) : setCustomAlert({ severity: "error", message: response.data.body.message }); onToggleSnackBar();
+      })
+      .catch(error => {
+        // Handle any error that occurs during the request
+        console.error(error);
+        setCustomAlert({ severity: "error", message: "One or more fields are empty" }); onToggleSnackBar();
+      })
   }
 
   return (
@@ -68,35 +68,36 @@ export default function App({navigation}) {
         label='Email'
         mode='outlined'
         onChangeText={(email) => setEmail(email)}
-        />
+      />
       <TextInput
         style={styles.reducedMarginBtn}
         label='Password'
         mode='outlined'
         onChangeText={(password) => setPassword(password)}
         secureTextEntry={true}
-        />
-      <Text style={{marginTop: 15, color: '#6563DB'}}>Forgot Password?</Text>
+      />
+      <Text style={{ marginTop: 15, color: '#6563DB' }}>Forgot Password?</Text>
       <Button
-          style={styles.reducedMarginBtn}
-          mode='contained'
-          onPress={() => SendToBackend()}
-          width='80%'
-          >
-          Log in
-        </Button>
-        <Text style={{marginTop: 15}}>Don't have an account? 
+        style={styles.reducedMarginBtn}
+        mode='contained'
+        // onPress={() => SendToBackend()}
+        onPress={() => navigation.navigate('Main')}
+        width='80%'
+      >
+        Log in
+      </Button>
+      {/* <Text style={{marginTop: 15}}>Don't have an account? 
           <Text style={{marginTop: 15, color: '#6563DB'}} onPress={() => navigation.navigate('Register')}> Create account</Text>
-        </Text>
-        <Snackbar 
-          visible={visible}
-          onDismiss={onDismissSnackBar}
-          style={{ backgroundColor: '#D1312A'}}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Icon source="alert-circle-outline" color="#fff" size={24} />
-            <Text style={{ marginLeft: 10, color: '#fff', fontWeight: 'bold'}}>{customAlert.message}</Text>
-          </View>
-        </Snackbar>
+        </Text> */}
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        style={{ backgroundColor: '#D1312A' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Icon source="alert-circle-outline" color="#fff" size={24} />
+          <Text style={{ marginLeft: 10, color: '#fff', fontWeight: 'bold' }}>{customAlert.message}</Text>
+        </View>
+      </Snackbar>
     </View>
   );
 }
@@ -116,13 +117,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   button: {
-    marginTop: 25, 
-    fullWidth: true, 
+    marginTop: 25,
+    fullWidth: true,
     width: '70%',
   },
   reducedMarginBtn: {
     marginTop: 15,
-    fullWidth: true, 
+    fullWidth: true,
     width: '70%',
   }
 });

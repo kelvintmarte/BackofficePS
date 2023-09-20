@@ -8,6 +8,8 @@ import RegisterScreen from '../screens/registerScreen.js';
 import StartingScreen from '../screens/startingScreen.js';
 import MainScreen from '../screens/main.js';
 import ParkingLotScreen from '../screens/parkinglotScreen.js';
+import DebugScreen from '../screens/debugScreen.js';
+import ParkingScreen from '../screens/parkingScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -20,6 +22,8 @@ const App = () => {
                 <Stack.Screen name="Register" component={RegisterScreen} />
                 <Stack.Screen name="Main" component={MainScreen} />
                 <Stack.Screen name="ParkingLot" component={ParkingLotScreen} />
+                <Stack.Screen name="Debug" component={DebugScreen} />
+                <Stack.Screen name="Parking" component={ParkingScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

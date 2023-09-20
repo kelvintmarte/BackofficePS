@@ -81,10 +81,19 @@ export default function App({ navigation }) {
         style={styles.reducedMarginBtn}
         mode='contained'
         // onPress={() => SendToBackend()}
-        onPress={() => navigation.navigate('Main')}
+        onPress={() => navigation.navigate('ParkingLot')}
         width='80%'
       >
         Log in
+      </Button>
+      <Button
+        style={styles.reducedMarginBtn}
+        mode='contained'
+        // onPress={() => SendToBackend()}
+        onPress={() => navigation.navigate('Debug')}
+        width='80%'
+      >
+        Debug
       </Button>
       {/* <Text style={{marginTop: 15}}>Don't have an account? 
           <Text style={{marginTop: 15, color: '#6563DB'}} onPress={() => navigation.navigate('Register')}> Create account</Text>

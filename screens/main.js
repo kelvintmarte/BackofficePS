@@ -3,10 +3,13 @@ import { Text, View, StyleSheet, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Main Screeen</Text>
+            <Button onPress={() => navigation.navigate("Debug")}>
+                Debug
+            </Button>
         </View>
     );
 }

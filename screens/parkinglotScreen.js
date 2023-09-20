@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 
-export default function ParkingLotScreen() {
+export default function ParkingLotScreen({ navigation }) {
     const tableData = [
         ["Organization", "Name", "Total Parking", "Description"],
         [
@@ -45,6 +45,9 @@ export default function ParkingLotScreen() {
                     <Text style={styles.buttonText}>Delete Parking Lot</Text>
                 </TouchableOpacity>
             </View>
+            <Button onPress={() => navigation.navigate("Debug")}>
+                Debug
+            </Button>
         </View>
     );
 }

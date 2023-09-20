@@ -20,14 +20,14 @@ export default function App({ navigation }) {
       >
         Log in
       </Button>
-      {/* <Button
+      <Button
         style={styles.button}
-        icon="send"
+        icon="setting"
         mode="contained"
-        onPress={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate("Debug")}
       >
-        Sign up
-      </Button> */}
+        Debug
+      </Button>
     </View>
   );
 }

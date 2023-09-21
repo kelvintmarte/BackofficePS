@@ -114,6 +114,15 @@ export default function DebugScreen({ navigation }) {
             >
                 Delete Parking Screen
             </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("Configuration")}
+                width="80%"
+            >
+                Config Screen
+            </Button>
         </View>
     );
 }

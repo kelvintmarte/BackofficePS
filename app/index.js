@@ -17,6 +17,7 @@ import CreateParkingLotScreen from '../screens/createScreens/createParkingLot.js
 import DeleteParkingLotScreen from '../screens/deleteScreens/deleteParkingLot.js';
 import DeleteOrganizationScreen from '../screens/deleteScreens/deleteOrganization.js';
 import DeleteParkingScreen from '../screens/deleteScreens/deleteParking.js';
+import ConfigScreen from '../screens/configScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -38,7 +39,7 @@ const App = () => {
                 <Stack.Screen name="DeleteParkingLot" component={DeleteParkingLotScreen} />
                 <Stack.Screen name="DeleteOrganization" component={DeleteOrganizationScreen} />
                 <Stack.Screen name="DeleteParking" component={DeleteParkingScreen} />
-
+                <Stack.Screen name="Configuration" component={ConfigScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

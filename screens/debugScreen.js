@@ -51,6 +51,69 @@ export default function DebugScreen({ navigation }) {
             >
                 Parking Screen
             </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("Organization")}
+                width="80%"
+            >
+                Organization Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("CreateParking")}
+                width="80%"
+            >
+                Create Parking Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("CreateParkingLot")}
+                width="80%"
+            >
+                Create Parkinglot Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("CreateOrganization")}
+                width="80%"
+            >
+                Create Organization Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("DeleteParkingLot")}
+                width="80%"
+            >
+                Delete ParkingLot Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("DeleteOrganization")}
+                width="80%"
+            >
+                Delete Organization Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("DeleteParking")}
+                width="80%"
+            >
+                Delete Parking Screen
+            </Button>
         </View>
     );
 }

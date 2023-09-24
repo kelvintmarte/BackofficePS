@@ -4,7 +4,7 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "ParkingSpotMobile",
-    "slug": "ParkingSpotMobile"
+    "name": "ParkingSpot",
+    "slug": "ParkingSpot"
   }
 }

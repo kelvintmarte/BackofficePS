@@ -1,19 +1,78 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { React, Component, useState } from "react";
+import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Table, Row, Rows } from "react-native-table-component";
 
 export default function CreateOrganizationScreen({ navigation }) {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Create Organization Screeen</Text>
-            <Button onPress={() => navigation.navigate("Debug")}>
-                Debug
-            </Button>
-        </View>
-    );
+  const [textInput1, setTextInput1] = useState("");
+  const [textInput2, setTextInput2] = useState("");
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Create Organization Screeen</Text>
+      <Text style={styles.label}>Organization Name:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setTextInput1(text)}
+        value={textInput1}
+        placeholder="Enter text..."
+      />
+
+      <Text style={styles.label}>Organization Owner:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setTextInput2(text)}
+        value={textInput2}
+        placeholder="Enter text..."
+      />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+          onPress={() => navigation.navigate("Parking")}>
+          <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#6563db" }]}>
+          <Text style={styles.buttonText}>Add Organization</Text>
+        </TouchableOpacity>
+      </View>
+      <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    title: { fontSize: 24, marginBottom: 20, textAlign: "center" },
+  button: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingVertical: 10,
+    fullWidth: true,
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#fff",
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 16,
+    paddingLeft: 8,
+  },
+  title: { fontSize: 24, marginBottom: 20, textAlign: "center" },
 });

@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import {
-  Text,
   View,
   StyleSheet,
   TextInput,
@@ -8,6 +7,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text, IconButton, Button } from 'react-native-paper'
+
 
 export default function CreateParkingScreen({ navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -69,11 +70,7 @@ export default function CreateParkingScreen({ navigation }) {
         </View>
       </Modal>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.navigate("Parking")}>
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
+      <IconButton icon="arrow-left-bold" iconColor='#6563DB' size={70} onPress={() => navigation.goBack()}/>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}>
           <Text style={styles.buttonText}>Add Parking</Text>

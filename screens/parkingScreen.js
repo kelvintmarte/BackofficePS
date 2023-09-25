@@ -22,11 +22,18 @@ export default function ParkingScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.navigate("CreateParking")}>
+          onPress={() => navigation.navigate("CreateParking")}
+        >
           <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
-        <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+          onPress={() => console.log("Delete Button pressed")}
+        >
+          <Text style={styles.buttonText}>Delete Parking Lot</Text>
+        </TouchableOpacity>
       </View>
+      <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
     </View>
   );
 }

@@ -1,14 +1,13 @@
 import { React, useState } from "react";
 import {
-  Text,
   View,
   StyleSheet,
-  Button,
   TextInput,
   Modal,
   TouchableWithoutFeedback,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text, IconButton, Button } from "react-native-paper";
 
 export default function CreateParkingLotScreen({ navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -71,20 +70,23 @@ export default function CreateParkingLotScreen({ navigation }) {
             <TouchableOpacity
               key={item.value}
               style={styles.modalOption}
-              onPress={() => handleOptionSelect(item.value)}>
+              onPress={() => handleOptionSelect(item.value)}
+            >
               <Text>{item.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </Modal>
       <View style={styles.buttonContainer}>
+        <IconButton
+          icon="arrow-left-bold"
+          iconColor="#6563DB"
+          size={70}
+          onPress={() => navigation.goBack()}
+        />
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.navigate("ParkingLot")}>
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}>
+        >
           <Text style={styles.buttonText}>Add ParkingLot</Text>
         </TouchableOpacity>
       </View>

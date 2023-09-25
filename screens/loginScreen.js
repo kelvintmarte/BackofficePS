@@ -32,7 +32,7 @@ export default function App({ navigation }) {
   }, []);
 
   const SendToBackend = () => {
-    const axiosUrl = "https://localhost:3000/user/login";
+    const axiosUrl = "http://localhost:3000/user/login";
     console.log(axiosUrl);
     const data = {
       email: email.toLowerCase(),

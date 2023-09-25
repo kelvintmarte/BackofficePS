@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Table, Row, Rows } from "react-native-table-component";
+import { View, StyleSheet } from 'react-native';
+import { Text, IconButton } from 'react-native-paper'
 
 export default function ConfigScreen({ navigation }) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Config Screeen</Text>
-            <Button onPress={() => navigation.navigate("Debug")}>
-                Debug
-            </Button>
+        <View style={{flex: 1, backgroundColor: '#fff'}}>
+          <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', flex: 4}}>
+          <Text variant="headlineLarge" style={{fontWeight: 'bold'}}>Equipo de trabajo</Text>
+          <Text variant="headlineSmall" style={{marginTop: 15}}>Mariano Vásquez, 1087284</Text>
+          <Text variant="headlineSmall" style={{marginTop: 15}}>Pablo Diaz, 1096394</Text>
+          <Text variant="headlineSmall" style={{marginTop: 15}}>Diego Lobato, 1100999</Text>
+          <Text variant="headlineSmall" style={{marginTop: 15}}>Kelvin Marte, 1100945</Text>
+          </View>
+          <View style={{justifyContent: 'flex-end', alignItems: 'flex-start', flex: 1}}>
+          <IconButton icon="arrow-left-bold" iconColor='#6563DB' size={70} onPress={() => navigation.goBack()}/>
+          </View>
         </View>
-    );
+      );
 }
 
 const styles = StyleSheet.create({

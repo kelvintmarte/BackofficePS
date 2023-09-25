@@ -81,7 +81,7 @@ export default function App({ navigation }) {
         style={styles.reducedMarginBtn}
         mode='contained'
         // onPress={() => SendToBackend()}
-        onPress={() => navigation.navigate('ParkingLot')}
+        onPress={() => navigation.navigate('Main')}
         width='80%'
       >
         Log in

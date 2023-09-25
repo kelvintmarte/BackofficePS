@@ -1,21 +1,19 @@
-import {React,  Component,useState } from "react";
+import { React, useState } from "react";
 import {
   Text,
   View,
   StyleSheet,
-  Button,
   TextInput,
   Modal,
   TouchableWithoutFeedback,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-// import { Table, Row, Rows } from "react-native-table-component
 
 export default function CreateParkingScreen({ navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
-  const [textInput1, setTextInput1] = useState("");
-  const [textInput2, setTextInput2] = useState("");
+  const [parkingInput, setparkingInput] = useState("");
+  const [priceInput, setpriceInput] = useState("");
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -26,7 +24,6 @@ export default function CreateParkingScreen({ navigation }) {
     toggleModal();
   };
 
-  // Data for the combo box (dropdown)
   const comboData = [
     { label: "Parqueo Subterraneo", value: "Parqueo Subterraneo" },
     { label: "Parqueo Profesores", value: "Parqueo Profesores" },
@@ -44,15 +41,15 @@ export default function CreateParkingScreen({ navigation }) {
       <Text style={styles.label}>Parking:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setTextInput1(text)}
-        value={textInput1}
+        onChangeText={(text) => setparkingInput(text)}
+        value={parkingInput}
       />
 
       <Text style={styles.label}>Base Price:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setTextInput2(text)}
-        value={textInput2}
+        onChangeText={(text) => setpriceInput(text)}
+        value={priceInput}
       />
 
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
@@ -151,18 +148,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
-  },
-  button: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    paddingVertical: 10,
-    fullWidth: true,
-    width: "100%",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
   },
 });

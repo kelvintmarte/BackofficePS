@@ -1,26 +1,26 @@
-import { React, Component, useState } from "react";
+import { React, useState } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function CreateOrganizationScreen({ navigation }) {
-  const [textInput1, setTextInput1] = useState("");
-  const [textInput2, setTextInput2] = useState("");
+  const [orgInput, setorgInput] = useState("");
+  const [ownerInput, setownerInput] = useState("");
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create Organization Screeen</Text>
+      <Text style={styles.title}>Create Organization</Text>
       <Text style={styles.label}>Organization Name:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setTextInput1(text)}
-        value={textInput1}
+        onChangeText={(text) => setorgInput(text)}
+        value={orgInput}
         placeholder="Enter text..."
       />
 
       <Text style={styles.label}>Organization Owner:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setTextInput2(text)}
-        value={textInput2}
+        onChangeText={(text) => setownerInput(text)}
+        value={ownerInput}
         placeholder="Enter text..."
       />
       <View style={styles.buttonContainer}>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
@@ -10,7 +10,7 @@ export default function ParkingScreen({ navigation }) {
   ];
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Parking Screeen</Text>
+      <Text style={styles.title}>Parking</Text>
       <Table borderStyle={{ borderWidth: 1 }}>
         <Row
           data={["Estacionamiento", "Parqueo", "Precio"]}

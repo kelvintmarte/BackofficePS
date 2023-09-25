@@ -1,16 +1,18 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 import {
-  View,
-  StyleSheet,
   TextInput,
-  Modal,
-  TouchableWithoutFeedback,
-} from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Text, IconButton, Button } from 'react-native-paper'
+  Text,
+  Button,
+  Snackbar,
+  IconButton,
+  List,
+} from "react-native-paper";
+import { Dropdown } from "react-native-element-dropdown";
+import axios from "axios";
 
-
-export default function CreateParkingScreen({ navigation }) {
+export default function CreateParkingScreen({ route, navigation }) {
+  const [parkinglot, setParkinglot] = React.useState("");
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const [parkingInput, setparkingInput] = useState("");
@@ -18,6 +20,26 @@ export default function CreateParkingScreen({ navigation }) {
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+  useEffect(() => {
+    GetParkingLotData();
+  }, []);
+
+  const GetParkingLotData = () => {
+    const axiosUrl = "http://localhost:3000/parking-lot";
+    console.log(axiosUrl);
+    axios.get(axiosUrl, { withCredentials: true }).then((response) => {
+      const newParkinglotList = [];
+      response.data.body.forEach((parkinglot) => {
+        newParkinglotList.push({
+          value: parkinglot._id,
+          label: parkinglot.name,
+        });
+        setParkinglot(newParkinglotList);
+      }).catch(error=>{
+        console.log(error);
+      })
+    });
   };
 
   const handleOptionSelect = (value) => {
@@ -34,10 +56,15 @@ export default function CreateParkingScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add Parking</Text>
-      <Text style={styles.label}>Select an option:</Text>
+      <Dropdown
+      style={[styles.dropdown, isFocused && {borderColor:'blue'}]}
+      placeholderStyle={styles.placeholderStyle}
+      selectedTextStyle
+      />
+      {/* <Text style={styles.label}>Select an option:</Text>
       <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
         <Text>{selectedValue ? selectedValue : "Select an option..."}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <Text style={styles.label}>Parking:</Text>
       <TextInput
@@ -53,7 +80,7 @@ export default function CreateParkingScreen({ navigation }) {
         value={priceInput}
       />
 
-      <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+      {/* <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableWithoutFeedback onPress={toggleModal}>
           <View style={styles.modalOverlay}></View>
         </TouchableWithoutFeedback>
@@ -63,16 +90,23 @@ export default function CreateParkingScreen({ navigation }) {
             <TouchableOpacity
               key={item.value}
               style={styles.modalOption}
-              onPress={() => handleOptionSelect(item.value)}>
+              onPress={() => handleOptionSelect(item.value)}
+            >
               <Text>{item.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
-      </Modal>
+      </Modal> */}
       <View style={styles.buttonContainer}>
-      <IconButton icon="arrow-left-bold" iconColor='#6563DB' size={70} onPress={() => navigation.goBack()}/>
+        <IconButton
+          icon="arrow-left-bold"
+          iconColor="#6563DB"
+          size={70}
+          onPress={() => navigation.goBack()}
+        />
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}>
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+        >
           <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
       </View>

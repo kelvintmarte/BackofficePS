@@ -87,7 +87,7 @@ export default function DebugScreen({ navigation }) {
             >
                 Create Organization Screen
             </Button>
-            <Button
+            {/* <Button
                 style={styles.button}
                 icon="send"
                 mode="contained"
@@ -113,7 +113,7 @@ export default function DebugScreen({ navigation }) {
                 width="80%"
             >
                 Delete Parking Screen
-            </Button>
+            </Button> */}
             <Button
                 style={styles.button}
                 icon="send"

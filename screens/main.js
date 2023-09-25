@@ -28,9 +28,9 @@ export default function MainScreen({ navigation }) {
     <ScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}>
-      <Text style={styles.title}>Main Screeen</Text>
+      <Text style={styles.title}>Dashboard</Text>
       {/* Line Chart */}
-      <Text style={styles.chartTitle}>Organization Chart</Text>
+      <Text style={styles.chartTitle}>Organization</Text>
       <View style={styles.chartContainer}>
         <LineChart
           data={chartData}
@@ -41,7 +41,7 @@ export default function MainScreen({ navigation }) {
       </View>
 
       {/* Bar Chart */}
-      <Text style={styles.chartTitle}>Parking Chart</Text>
+      <Text style={styles.chartTitle}>Parking</Text>
       <View style={styles.chartContainer}>
         <BarChart
           data={chartData}
@@ -52,7 +52,7 @@ export default function MainScreen({ navigation }) {
       </View>
 
       {/* Pie Chart */}
-      <Text style={styles.chartTitle}>ParkingLot Chart</Text>
+      <Text style={styles.chartTitle}>ParkingLot</Text>
       <View style={styles.chartContainer}>
         <PieChart
           data={[

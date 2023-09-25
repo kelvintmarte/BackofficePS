@@ -26,7 +26,7 @@ export default function CreateOrganizationScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Organization")}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
         <TouchableOpacity

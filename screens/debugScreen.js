@@ -6,7 +6,7 @@ import { Button } from "react-native-paper";
 export default function DebugScreen({ navigation }) {
     return (
         <View style={styles.container}>
-            <Button
+            {/* <Button
                 style={styles.button}
                 icon="send"
                 mode="contained"
@@ -14,7 +14,7 @@ export default function DebugScreen({ navigation }) {
                 width="80%"
             >
                 Log in
-            </Button>
+            </Button> */}
             <Button
                 style={styles.button}
                 icon="send"
@@ -60,7 +60,7 @@ export default function DebugScreen({ navigation }) {
             >
                 Organization Screen
             </Button>
-            <Button
+            {/* <Button
                 style={styles.button}
                 icon="send"
                 mode="contained"
@@ -86,7 +86,7 @@ export default function DebugScreen({ navigation }) {
                 width="80%"
             >
                 Create Organization Screen
-            </Button>
+            </Button> */}
             <Button
                 style={styles.button}
                 icon="send"

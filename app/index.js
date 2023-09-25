@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import LoginScreen from '../screens/loginScreen.js';
 import RegisterScreen from '../screens/registerScreen.js';
 import StartingScreen from '../screens/startingScreen.js';
@@ -15,6 +14,8 @@ import CreateOrganizationScreen from '../screens/createScreens/createOrganizatio
 import CreateParkingScreen from '../screens/createScreens/createParking.js';
 import CreateParkingLotScreen from '../screens/createScreens/createParkingLot.js';
 import ConfigScreen from '../screens/configScreen.js';
+import ProfileScreen from '../screens/profileScreen.js';
+import EditProfileScreen from '../screens/editProfileScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -34,6 +35,8 @@ const App = () => {
                 <Stack.Screen name="CreateParking" component={CreateParkingScreen} />
                 <Stack.Screen name="CreateParkingLot" component={CreateParkingLotScreen} />
                 <Stack.Screen name="Configuration" component={ConfigScreen} />
+                <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

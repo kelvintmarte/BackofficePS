@@ -87,6 +87,24 @@ export default function DebugScreen({ navigation }) {
             >
                 Create Organization Screen
             </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("Profile")}
+                width="80%"
+            >
+                Profile Screen
+            </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("EditProfile")}
+                width="80%"
+            >
+                Edit Profile Screen
+            </Button>
             {/* <Button
                 style={styles.button}
                 icon="send"

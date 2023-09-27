@@ -24,11 +24,11 @@ export default function ConfigScreen({ navigation }) {
       phone: "555-555-5555",
     },
     {
-        name: "Kelvin Marte",
-        role: "Desarrollador FrontEnd",
-        email: "kelvintmarte@gmail.com",
-        phone: "829-801-0270",
-      },
+      name: "Kelvin Marte",
+      role: "Desarrollador FrontEnd",
+      email: "kelvintmarte@gmail.com",
+      phone: "829-801-0270",
+    },
   ];
 
   // Define business location
@@ -38,16 +38,16 @@ export default function ConfigScreen({ navigation }) {
     const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
 
     Linking.openURL(url)
-        .then((result) => {
-            if (result) {
-                console.log("OK");
-            } else {
-                console.log("Error");
-            }
-        }).catch((error) => {
-            console.error("An error ocurred: ", error);
-        });
-};
+      .then((result) => {
+        if (result) {
+          console.log("OK");
+        } else {
+          console.log("Error");
+        }
+      }).catch((error) => {
+        console.error("An error ocurred: ", error);
+      });
+  };
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -119,9 +119,6 @@ export default function ConfigScreen({ navigation }) {
             <Text>{businessLocation}</Text>
           </View>
         </View>
-
-        {/* Debug Button */}
-        <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
       </View>
     </View>
   );

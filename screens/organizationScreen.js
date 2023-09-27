@@ -1,25 +1,34 @@
 import React from "react";
 import { Text, View, StyleSheet, Button, Linking } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Table, Row, Rows } from "react-native-table-component";
 
 export default function OrganizationScreen({ navigation }) {
+
+  const tableData = [
+    ["Organization Name", "Direccion"],
+    ["INTEC", "Av. de Los Próceres 49, Santo Domingo 10602"],
+    ["PUCMM", "Abraham Lincoln esq. Simón Bolívar"],
+    ["UNPHU", "Av. John F. Kennedy 1/2, Santo Domingo"],
+  ];
 
   const openWebPage = () => {
     const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
 
     Linking.openURL(url)
-        .then((result) => {
-            if (result) {
-                console.log("OK");
-            } else {
-                console.log("Error");
-            }
-        }).catch((error) => {
-            console.error("An error ocurred: ", error);
-        });
-};
+      .then((result) => {
+        if (result) {
+          console.log("OK");
+        } else {
+          console.log("Error");
+        }
+      }).catch((error) => {
+        console.error("An error ocurred: ", error);
+      });
+  };
 
   return (
+
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
@@ -36,7 +45,7 @@ export default function OrganizationScreen({ navigation }) {
         >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("ParkingLot")}
@@ -68,7 +77,29 @@ export default function OrganizationScreen({ navigation }) {
 
       {/* Main content */}
       <View style={styles.mainContent}>
-        <Text style={styles.title}>Organization Screen</Text>
+        <Text style={styles.title}>Organization</Text>
+        <Table borderStyle={{ borderWidth: 1 }}>
+          <Row
+            data={["Organization Name", "Direccion"]}
+            style={styles.head}
+            textStyle={[styles.text, { color: "white" }]}
+          />
+          <Rows data={tableData.slice(1)} textStyle={styles.text} />
+        </Table>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: "#6563db" }]}
+            onPress={() => navigation.navigate("CreateOrganization")}
+          >
+            <Text style={styles.buttonText}>Add Organization</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: "#6563db" }]}
+            onPress={() => console.log("Delete Button pressed")}
+          >
+            <Text style={styles.buttonText}>Delete Organization</Text>
+          </TouchableOpacity>
+        </View>
         <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
       </View>
     </View>
@@ -78,7 +109,7 @@ export default function OrganizationScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row", // Use 'column' if you want a sidebar on top of main content
+    flexDirection: "row",
   },
   sidebar: {
     flex: 1,
@@ -87,7 +118,7 @@ const styles = StyleSheet.create({
   },
   sidebarButton: {
     marginBottom: 10,
-    backgroundColor: "#fff", // Button background color
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 5,
   },
@@ -100,5 +131,30 @@ const styles = StyleSheet.create({
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
   },
-  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, textAlign: "center" },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  head: { height: 40, backgroundColor: "#6563db" },
+  text: { margin: 6, textAlign: "center" },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  button: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingVertical: 10,
+    fullWidth: true,
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+  },
 });

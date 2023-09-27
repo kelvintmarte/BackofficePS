@@ -15,6 +15,17 @@ const chartData = {
       data: [20, 45, 28, 80],
     },
   ],
+  labels: [
+    "Parqueo subterraneo",
+    "Parqueo Profesores",
+    "Parqueo Biblioteca",
+    "Torre De parqueo",
+  ],
+  datasets: [
+    {
+      data: [20, 45, 28, 80],
+    },
+  ],
 };
 
 const openWebPage = () => {
@@ -33,6 +44,10 @@ const openWebPage = () => {
 };
 
 const chartConfig = {
+  backgroundGradientFrom: "white",
+  backgroundGradientTo: "white",
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  strokeWidth: 2,
   backgroundGradientFrom: "white",
   backgroundGradientTo: "white",
   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,

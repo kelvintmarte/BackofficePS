@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import LoginScreen from '../screens/loginScreen.js';
 import RegisterScreen from '../screens/registerScreen.js';
 import StartingScreen from '../screens/startingScreen.js';
@@ -14,10 +13,9 @@ import OrganizationScreen from '../screens/organizationScreen.js';
 import CreateOrganizationScreen from '../screens/createScreens/createOrganization.js';
 import CreateParkingScreen from '../screens/createScreens/createParking.js';
 import CreateParkingLotScreen from '../screens/createScreens/createParkingLot.js';
-import DeleteParkingLotScreen from '../screens/deleteScreens/deleteParkingLot.js';
-import DeleteOrganizationScreen from '../screens/deleteScreens/deleteOrganization.js';
-import DeleteParkingScreen from '../screens/deleteScreens/deleteParking.js';
 import ConfigScreen from '../screens/configScreen.js';
+import ProfileScreen from '../screens/profileScreen.js';
+import EditProfileScreen from '../screens/editProfileScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -36,10 +34,9 @@ const App = () => {
                 <Stack.Screen name="CreateOrganization" component={CreateOrganizationScreen} />
                 <Stack.Screen name="CreateParking" component={CreateParkingScreen} />
                 <Stack.Screen name="CreateParkingLot" component={CreateParkingLotScreen} />
-                <Stack.Screen name="DeleteParkingLot" component={DeleteParkingLotScreen} />
-                <Stack.Screen name="DeleteOrganization" component={DeleteOrganizationScreen} />
-                <Stack.Screen name="DeleteParking" component={DeleteParkingScreen} />
                 <Stack.Screen name="Configuration" component={ConfigScreen} />
+                <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

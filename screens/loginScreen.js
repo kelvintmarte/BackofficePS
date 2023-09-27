@@ -34,16 +34,11 @@ export default function App({ navigation }) {
   const SendToBackend = () => {
     const axiosUrl = "http://localhost:3000/user/login";
     console.log(axiosUrl);
-    const axiosUrl = "http://localhost:3000/user/login";
-    console.log(axiosUrl);
     const data = {
       email: email.toLowerCase(),
       password: password,
       password: password,
     };
-    axios
-      .post(axiosUrl, data, { withCredentials: true })
-      .then((response) => {
     axios
       .post(axiosUrl, data, { withCredentials: true })
       .then((response) => {
@@ -82,15 +77,6 @@ export default function App({ navigation }) {
         onToggleSnackBar();
       });
   };
-      .catch((error) => {
-        console.log(error);
-        setCustomAlert({
-          severity: "error",
-          message: "One or more fields are empty",
-        });
-        onToggleSnackBar();
-      });
-  };
 
   return (
     <View style={styles.container}>
@@ -101,29 +87,29 @@ export default function App({ navigation }) {
         label='Email'
         mode='outlined'
         onChangeText={(email) => setEmail(email)}
-        />
+      />
       <TextInput
         style={styles.reducedMarginBtn}
         label='Password'
         mode='outlined'
         onChangeText={(password) => setPassword(password)}
         secureTextEntry={true}
-        />
-      <Text style={{marginTop: 15, color: '#6563DB'}} onPress={() => navigation.navigate("ForgotPassword")}>Forgot Password?</Text>
+      />
+      <Text style={{ marginTop: 15, color: '#6563DB' }} onPress={() => navigation.navigate("ForgotPassword")}>Forgot Password?</Text>
       <Button
         style={styles.reducedMarginBtn}
         mode='contained'
         onPress={() => SendToBackend()}
         width='80%'>
-          Log in
+        Log in
       </Button>
-      <Snackbar 
+      <Snackbar
         visible={visible}
         onDismiss={onDismissSnackBar}
-        style={{ backgroundColor: '#D1312A'}}>
+        style={{ backgroundColor: '#D1312A' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon source="alert-circle-outline" color="#fff" size={24} />
-          <Text style={{ marginLeft: 10, color: '#fff', fontWeight: 'bold'}}>{customAlert.message}</Text>
+          <Text style={{ marginLeft: 10, color: '#fff', fontWeight: 'bold' }}>{customAlert.message}</Text>
         </View>
       </Snackbar>
     </View>

@@ -100,7 +100,6 @@ export default function OrganizationScreen({ navigation }) {
             <Text style={styles.buttonText}>Delete Organization</Text>
           </TouchableOpacity>
         </View>
-        <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
       </View>
     </View>
   );

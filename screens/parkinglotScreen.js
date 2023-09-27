@@ -24,18 +24,18 @@ export default function parkinglotScreen({ navigation }) {
     const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
 
     Linking.openURL(url)
-        .then((result) => {
-            if (result) {
-                console.log("OK");
-            } else {
-                console.log("Error");
-            }
-        }).catch((error) => {
-            console.error("An error ocurred: ", error);
-        });
-};
+      .then((result) => {
+        if (result) {
+          console.log("OK");
+        } else {
+          console.log("Error");
+        }
+      }).catch((error) => {
+        console.error("An error ocurred: ", error);
+      });
+  };
   return (
-    
+
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
@@ -107,7 +107,6 @@ export default function parkinglotScreen({ navigation }) {
             <Text style={styles.buttonText}>Delete Parking Lot</Text>
           </TouchableOpacity>
         </View>
-        <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
       </View>
     </View>
   );

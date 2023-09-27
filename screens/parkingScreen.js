@@ -95,7 +95,6 @@ export default function parkingScreen({ navigation }) {
             <Text style={styles.buttonText}>Delete Parking Lot</Text>
           </TouchableOpacity>
         </View>
-        <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
       </View>
     </View>
   );

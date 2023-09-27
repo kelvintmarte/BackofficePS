@@ -6,7 +6,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 export default function DeleteParkingScreen({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Delete Parking Screeen</Text>
+            <Text style={styles.title}>Delete Parking Screen</Text>
             <Button onPress={() => navigation.navigate("Debug")}>
                 Debug
             </Button>

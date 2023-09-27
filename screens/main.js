@@ -1,111 +1,206 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, Linking } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { Table, Row, Rows } from "react-native-table-component";
 import { BarChart, LineChart, PieChart } from "react-native-chart-kit";
 
 const chartData = {
-    labels: [
-        "Parqueo subterraneo",
-        "Parqueo Profesores",
-        "Parqueo Biblioteca",
-        "Torre De parqueo",
-    ],
-    datasets: [
-        {
-            data: [20, 45, 28, 80],
-        },
-    ],
+  labels: [
+    "Parqueo subterraneo",
+    "Parqueo Profesores",
+    "Parqueo Biblioteca",
+    "Torre De parqueo",
+  ],
+  datasets: [
+    {
+      data: [20, 45, 28, 80],
+    },
+  ],
+};
+
+const openWebPage = () => {
+  const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
+
+  Linking.openURL(url)
+      .then((result) => {
+          if (result) {
+              console.log("OK");
+          } else {
+              console.log("Error");
+          }
+      }).catch((error) => {
+          console.error("An error ocurred: ", error);
+      });
 };
 
 const chartConfig = {
-    backgroundGradientFrom: "white",
-    backgroundGradientTo: "white",
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    strokeWidth: 2,
+  backgroundGradientFrom: "white",
+  backgroundGradientTo: "white",
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  strokeWidth: 2,
 };
+
 export default function MainScreen({ navigation }) {
-    return (
-        <ScrollView
-            contentContainerStyle={styles.container}
-            showsVerticalScrollIndicator={false}
+  return (
+    <View style={styles.container}>
+      {/* Sidebar */}
+      <View style={styles.sidebar}>
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Dashboard")}
         >
-            <Text style={styles.title}>Main Screeen</Text>
-            {/* Line Chart */}
-            <Text style={styles.chartTitle}>Organization Chart</Text>
-            <View style={styles.chartContainer}>
-                <LineChart
-                    data={chartData}
-                    width={400}
-                    height={300}
-                    chartConfig={chartConfig}
-                />
-            </View>
+          <Text style={styles.sidebarButtonText}>Dashboard</Text>
+        </TouchableOpacity>
 
-            {/* Bar Chart */}
-            <Text style={styles.chartTitle}>Parking Chart</Text>
-            <View style={styles.chartContainer}>
-                <BarChart
-                    data={chartData}
-                    width={400}
-                    height={300}
-                    chartConfig={chartConfig}
-                />
-            </View>
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Parking")}
+        >
+          <Text style={styles.sidebarButtonText}>Parkings</Text>
+        </TouchableOpacity>
 
-            {/* Pie Chart */}
-            <Text style={styles.chartTitle}>ParkingLot Chart</Text>
-            <View style={styles.chartContainer}>
-                <PieChart
-                    data={[
-                        {
-                            name: "Parqueo subterraneo",
-                            population: 20,
-                            color: "rgba(0, 0, 255, 0.7)",
-                        },
-                        { name: "Parqueo Profesores", population: 45, color: "green" },
-                        { name: "Parqueo Biblioteca", population: 28, color: "red" },
-                        { name: "Torre De parqueo", population: 80, color: "yellow" },
-                    ]}
-                    width={350}
-                    height={200}
-                    chartConfig={chartConfig}
-                    accessor="population"
-                    backgroundColor="transparent"
-                    paddingLeft="15"
-                    absolute
-                />
-            </View>
-            <Button onPress={() => navigation.navigate("Debug")}>Debug</Button>
-        </ScrollView>
-    );
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
+          <Text style={styles.sidebarButtonText}>Parking Lots</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Organization")}
+        >
+          <Text style={styles.sidebarButtonText}>Organization</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Configuration")}
+        >
+          <Text style={styles.sidebarButtonText}>Configuration</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => openWebPage()}
+        >
+          <Text style={styles.sidebarButtonText}>Documentation</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Main content */}
+      <ScrollView
+        contentContainerStyle={styles.mainContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={styles.title}>Main Screen</Text>
+        {/* Line Chart */}
+        <Text style={styles.chartTitle}>Organization Chart</Text>
+        <View style={styles.chartContainer}>
+          <LineChart data={chartData} width={400} height={300} chartConfig={chartConfig} />
+        </View>
+
+        {/* Bar Chart */}
+        <Text style={styles.chartTitle}>Parking Chart</Text>
+        <View style={styles.chartContainer}>
+          <BarChart data={chartData} width={400} height={300} chartConfig={chartConfig} />
+        </View>
+
+        {/* Pie Chart */}
+        <Text style={styles.chartTitle}>ParkingLot Chart</Text>
+        <View style={styles.chartContainer}>
+          <PieChart
+            data={[
+              {
+                name: "Parqueo subterraneo",
+                population: 20,
+                color: "rgba(0, 0, 255, 0.7)",
+              },
+              { name: "Parqueo Profesores", population: 45, color: "green" },
+              { name: "Parqueo Biblioteca", population: 28, color: "red" },
+              { name: "Torre De parqueo", population: 80, color: "yellow" },
+            ]}
+            width={350}
+            height={200}
+            chartConfig={chartConfig}
+            accessor="population"
+            backgroundColor="transparent"
+            paddingLeft="15"
+            absolute
+          />
+        </View>
+
+        {/* Debug Button */}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("Debug")}
+          >
+            <Text style={styles.buttonText}>Debug</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        paddingTop: 20,
-    },
-    mainTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    chartSection: {
-        marginBottom: 20,
-        alignItems: 'center',
-    },
-    chartContainer: {
-        borderWidth: 1,
-        borderColor: 'lightgray',
-        borderRadius: 10,
-        padding: 10,
-        backgroundColor: 'white',
-    },
-    chartTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    title: { fontSize: 24, marginBottom: 20, textAlign: "center" },
+  container: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  sidebar: {
+    flex: 0.4,
+    backgroundColor: "#AAA9E1", // Sidebar background color
+    padding: 5,
+  },
+  sidebarButton: {
+    marginBottom: 10,
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 5,
+  },
+  sidebarButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  mainContent: {
+    flex: 4,
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  chartTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  chartContainer: {
+    borderWidth: 1,
+    borderColor: "lightgray",
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: "white",
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  // Button styles
+  buttonContainer: {
+    alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#C5D4F4",
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });

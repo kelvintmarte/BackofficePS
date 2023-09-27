@@ -6,7 +6,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 export default function DeleteOrganizationScreen({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Delete Organization Screeen</Text>
+            <Text style={styles.title}>Delete Organization Screen</Text>
             <Button onPress={() => navigation.navigate("Debug")}>
                 Debug
             </Button>

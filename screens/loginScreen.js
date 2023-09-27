@@ -41,23 +41,38 @@ export default function App({ navigation }) {
   }, []);
 
   const SendToBackend = () => {
-
+    const axiosUrl = "http://localhost:3000/user/login";
+    console.log(axiosUrl);
     const data = {
       email: email.toLowerCase(),
-      password: password.toLowerCase(),
+      password: password,
     };
-    axios.post('//localhost:3000/user/login', data, { withCredentials: true })
-      .then(response => {
-        // Handle the response data
+    axios
+      .post(axiosUrl, data, { withCredentials: true })
+      .then((response) => {
         console.log(response.data);
-        response.data.body.success ? navigation.navigate('Main', { response }) : setCustomAlert({ severity: "error", message: response.data.body.message }); onToggleSnackBar();
+        if (response.data.body.success) {
+          let user = response.data.body.user;
+          console.log("User: ");
+          console.log(user);
+          navigation.navigate("Main", user);
+        } else {
+          setCustomAlert({
+            severity: "error",
+            message: response.data.body.message,
+          });
+          onToggleSnackBar();
+        }
       })
-      .catch(error => {
-        // Handle any error that occurs during the request
-        console.error(error);
-        setCustomAlert({ severity: "error", message: "One or more fields are empty" }); onToggleSnackBar();
-      })
-  }
+      .catch((error) => {
+        console.log(error);
+        setCustomAlert({
+          severity: "error",
+          message: "One or more fields are empty",
+        });
+        onToggleSnackBar();
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -80,8 +95,8 @@ export default function App({ navigation }) {
       <Button
         style={styles.reducedMarginBtn}
         mode='contained'
-        // onPress={() => SendToBackend()}
-        onPress={() => navigation.navigate('ParkingLot')}
+        onPress={() => SendToBackend()}
+        //onPress={() => navigation.navigate('ParkingLot')}
         width='80%'
       >
         Log in

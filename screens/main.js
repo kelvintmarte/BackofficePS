@@ -32,15 +32,15 @@ const openWebPage = () => {
   const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
 
   Linking.openURL(url)
-      .then((result) => {
-          if (result) {
-              console.log("OK");
-          } else {
-              console.log("Error");
-          }
-      }).catch((error) => {
-          console.error("An error ocurred: ", error);
-      });
+    .then((result) => {
+      if (result) {
+        console.log("OK");
+      } else {
+        console.log("Error");
+      }
+    }).catch((error) => {
+      console.error("An error ocurred: ", error);
+    });
 };
 
 const chartConfig = {
@@ -142,16 +142,6 @@ export default function MainScreen({ navigation }) {
             paddingLeft="15"
             absolute
           />
-        </View>
-
-        {/* Debug Button */}
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Debug")}
-          >
-            <Text style={styles.buttonText}>Debug</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

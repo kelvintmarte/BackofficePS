@@ -7,9 +7,11 @@ import {
   Snackbar,
   IconButton,
   List,
+  Modal,
 } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export default function CreateParkingScreen({ route, navigation }) {
   const [parkinglot, setParkinglot] = React.useState("");
@@ -22,25 +24,27 @@ export default function CreateParkingScreen({ route, navigation }) {
     setModalVisible(!isModalVisible);
   };
   useEffect(() => {
-    GetParkingLotData();
+    // GetParkingLotData();
   }, []);
 
-  const GetParkingLotData = () => {
-    const axiosUrl = "http://localhost:3000/parking-lot";
-    console.log(axiosUrl);
-    axios.get(axiosUrl, { withCredentials: true }).then((response) => {
-      const newParkinglotList = [];
-      response.data.body.forEach((parkinglot) => {
-        newParkinglotList.push({
-          value: parkinglot._id,
-          label: parkinglot.name,
-        });
-        setParkinglot(newParkinglotList);
-      }).catch(error=>{
-        console.log(error);
-      })
-    });
-  };
+  // const GetParkingLotData = () => {
+  //   const axiosUrl = "http://localhost:3000/parking-lot";
+  //   console.log(axiosUrl);
+  //   axios.get(axiosUrl, { withCredentials: true }).then((response) => {
+  //     const newParkinglotList = [];
+  //     response.data.body
+  //       .forEach((parkinglot) => {
+  //         newParkinglotList.push({
+  //           value: parkinglot._id,
+  //           label: parkinglot.name,
+  //         });
+  //         setParkinglot(newParkinglotList);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   });
+  // };
 
   const handleOptionSelect = (value) => {
     setSelectedValue(value);
@@ -56,15 +60,15 @@ export default function CreateParkingScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add Parking</Text>
-      <Dropdown
+      {/* <Dropdown
       style={[styles.dropdown, isFocused && {borderColor:'blue'}]}
       placeholderStyle={styles.placeholderStyle}
       selectedTextStyle
-      />
-      {/* <Text style={styles.label}>Select an option:</Text>
+      /> */}
+      <Text style={styles.label}>Select an option:</Text>
       <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
         <Text>{selectedValue ? selectedValue : "Select an option..."}</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
 
       <Text style={styles.label}>Parking:</Text>
       <TextInput
@@ -80,7 +84,7 @@ export default function CreateParkingScreen({ route, navigation }) {
         value={priceInput}
       />
 
-      {/* <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+      <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableWithoutFeedback onPress={toggleModal}>
           <View style={styles.modalOverlay}></View>
         </TouchableWithoutFeedback>
@@ -90,13 +94,12 @@ export default function CreateParkingScreen({ route, navigation }) {
             <TouchableOpacity
               key={item.value}
               style={styles.modalOption}
-              onPress={() => handleOptionSelect(item.value)}
-            >
+              onPress={() => handleOptionSelect(item.value)}>
               <Text>{item.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
-      </Modal> */}
+      </Modal>
       <View style={styles.buttonContainer}>
         <IconButton
           icon="arrow-left-bold"
@@ -105,8 +108,7 @@ export default function CreateParkingScreen({ route, navigation }) {
           onPress={() => navigation.goBack()}
         />
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}
-        >
+          style={[styles.button, { backgroundColor: "#6563db" }]}>
           <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
       </View>

@@ -107,7 +107,7 @@ export default function MainScreen({ navigation }) {
         contentContainerStyle={styles.mainContent}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title}>Main Screen</Text>
+        <Text style={styles.title}>Dashboard</Text>
         {/* Line Chart */}
         <Text style={styles.chartTitle}>Organization Chart</Text>
         <View style={styles.chartContainer}>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    textAlign: "center",
+    textAlign: "left",
   },
   chartTitle: {
     fontSize: 18,

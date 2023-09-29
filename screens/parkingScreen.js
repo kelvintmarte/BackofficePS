@@ -145,5 +145,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
   },
-  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, textAlign: "center" },
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, textAlign: "left" },
 });

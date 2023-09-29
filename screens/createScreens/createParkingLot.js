@@ -125,7 +125,7 @@ export default function CreateParkingLotScreen({ navigation }) {
           value={descInput}
         />
 
-        <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+        {/* <Modal animationType="slide" transparent={true} visible={isModalVisible}>
           <TouchableWithoutFeedback onPress={toggleModal}>
             <View style={styles.modalOverlay}></View>
           </TouchableWithoutFeedback>
@@ -141,7 +141,7 @@ export default function CreateParkingLotScreen({ navigation }) {
               </TouchableOpacity>
             ))}
           </View>
-        </Modal>
+        </Modal> */}
 
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}

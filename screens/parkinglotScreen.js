@@ -96,7 +96,7 @@ export default function parkinglotScreen({ navigation }) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: "#6563db" }]}
-            onPress={() => console.log("Add Button pressed")}
+            onPress={() => navigation.navigate("CreateParkingLot")}
           >
             <Text style={styles.buttonText}>Add Parking Lot</Text>
           </TouchableOpacity>

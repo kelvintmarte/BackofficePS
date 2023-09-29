@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView,Linking } from "react-native";
 import {
   TextInput,
   Text,
@@ -11,7 +11,10 @@ import {
 } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
-import { TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 
 export default function CreateParkingScreen({ route, navigation }) {
   const [parkinglot, setParkinglot] = React.useState("");
@@ -27,6 +30,23 @@ export default function CreateParkingScreen({ route, navigation }) {
     // GetParkingLotData();
   }, []);
 
+  const openWebPage = () => {
+    // Replace this URL with your documentation URL
+    const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
+
+    // Open the URL in the device's browser
+    Linking.openURL(url)
+      .then((result) => {
+        if (result) {
+          console.log("OK");
+        } else {
+          console.log("Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred: ", error);
+      });
+  };
   // const GetParkingLotData = () => {
   //   const axiosUrl = "http://localhost:3000/parking-lot";
   //   console.log(axiosUrl);
@@ -59,57 +79,92 @@ export default function CreateParkingScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add Parking</Text>
-      {/* <Dropdown
-      style={[styles.dropdown, isFocused && {borderColor:'blue'}]}
-      placeholderStyle={styles.placeholderStyle}
-      selectedTextStyle
-      /> */}
-      <Text style={styles.label}>Select an option:</Text>
-      <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
-        <Text>{selectedValue ? selectedValue : "Select an option..."}</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.label}>Parking:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setparkingInput(text)}
-        value={parkingInput}
-      />
-
-      <Text style={styles.label}>Base Price:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setpriceInput(text)}
-        value={priceInput}
-      />
-
-      <Modal animationType="slide" transparent={true} visible={isModalVisible}>
-        <TouchableWithoutFeedback onPress={toggleModal}>
-          <View style={styles.modalOverlay}></View>
-        </TouchableWithoutFeedback>
-        <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Select an option:</Text>
-          {comboData.map((item) => (
-            <TouchableOpacity
-              key={item.value}
-              style={styles.modalOption}
-              onPress={() => handleOptionSelect(item.value)}>
-              <Text>{item.label}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </Modal>
-      <View style={styles.buttonContainer}>
-        <IconButton
-          icon="arrow-left-bold"
-          iconColor="#6563DB"
-          size={70}
-          onPress={() => navigation.goBack()}
-        />
+      <View style={styles.sidebar}>
+        {/* Add your sidebar buttons here */}
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}>
-          <Text style={styles.buttonText}>Add Parking</Text>
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Main")}
+        >
+          <Text style={styles.sidebarButtonText}>Dashboard</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Parking")}
+        >
+          <Text style={styles.sidebarButtonText}>Parkings</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
+          <Text style={styles.sidebarButtonText}>Parking Lots</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Organization")}
+        >
+          <Text style={styles.sidebarButtonText}>Organization</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => navigation.navigate("Configuration")}
+        >
+          <Text style={styles.sidebarButtonText}>Configuration</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sidebarButton}
+          onPress={() => openWebPage()}
+        >
+          <Text style={styles.sidebarButtonText}>Documentation</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.mainContent}>
+        <Text style={styles.title}>Create Parking</Text>
+        <Text style={styles.label}>Select ParkingLot:</Text>
+        <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
+          <Text>{selectedValue ? selectedValue : "Select a Parkinglot..."}</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.label}>Name:</Text>
+        <TextInput
+          style={styles.input}
+          value={parkingInput}
+        />
+
+        <Text style={styles.label}>Total Parking:</Text>
+        <TextInput
+          style={styles.input}
+          value={priceInput}
+        />
+
+        {/* <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+          <TouchableWithoutFeedback onPress={toggleModal}>
+            <View style={styles.modalOverlay}></View>
+          </TouchableWithoutFeedback>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Select an option:</Text>
+            {comboData.map((item) => (
+              <TouchableOpacity
+                key={item.value}
+                style={styles.modalOption}
+                onPress={() => handleOptionSelect(item.value)}
+              >
+                <Text>{item.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </Modal> */}
+
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+        >
+          <Text style={styles.buttonText}>Add ParkingLot</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -117,11 +172,35 @@ export default function CreateParkingScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  title: { fontSize: 24, marginBottom: 20, textAlign: "center" },
   container: {
     flex: 1,
+    flexDirection: "row", // Sidebar on the left, content on the right
+  },
+  sidebar: {
+    flex: 1,
+    backgroundColor: "#AAA9E1", // Sidebar background color
     padding: 16,
+  },
+  sidebarButton: {
+    marginBottom: 10,
     backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 5,
+  },
+  sidebarButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  mainContent: {
+    flex: 5, // Adjust the flex ratio as needed
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   label: {
     fontSize: 16,
@@ -143,13 +222,12 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   button: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
     paddingVertical: 10,
-    fullWidth: true,
-    width: "100%",
+    backgroundColor: "#6563db",
+    fontWeight: "bold",
   },
   modalOverlay: {
     flex: 1,
@@ -176,10 +254,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 18,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
+    fontWeight: "bold",
   },
 });

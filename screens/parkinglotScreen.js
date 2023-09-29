@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 20,
-    textAlign: "center",
+    textAlign: "left",
     fontWeight: "bold",
   },
   head: { height: 40, backgroundColor: "#6563db" },

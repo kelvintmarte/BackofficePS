@@ -1,9 +1,8 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Linking } from "react-native";
+import { Text, View, StyleSheet, Linking, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ConfigScreen({ navigation }) {
-  // Define team member information
   const teamMembers = [
     {
       name: "Pablo Diaz",
@@ -31,7 +30,6 @@ export default function ConfigScreen({ navigation }) {
     },
   ];
 
-  // Define business location
   const businessLocation = "Instituto Tecnológico de Santo Domingo, Republica Dominicana";
 
   const openWebPage = () => {
@@ -52,6 +50,10 @@ export default function ConfigScreen({ navigation }) {
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
+      <Image
+          style={styles.image}
+          source={require("../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Main")}
@@ -99,7 +101,6 @@ export default function ConfigScreen({ navigation }) {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Configuration</Text>
 
-        {/* Team Information */}
         <View style={styles.teamInfo}>
           <View style={styles.teamMembers}>
             <Text style={styles.teamTitle}>Team Members</Text>
@@ -113,7 +114,6 @@ export default function ConfigScreen({ navigation }) {
             ))}
           </View>
 
-          {/* Business Location */}
           <View style={styles.businessLocation}>
             <Text style={styles.locationTitle}>Business Location</Text>
             <Text>{businessLocation}</Text>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: "#AAA9E1", // Sidebar background color
+    backgroundColor: "#cccccc", 
     padding: 5,
   },
   sidebarButton: {
@@ -148,6 +148,12 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4,
     padding: 20,
+  },
+  image: {
+    marginBottom: 40,
+    height: "20%",
+    width: "95%",
+    resizeMode: "contain",
   },
   title: {
     fontSize: 24,

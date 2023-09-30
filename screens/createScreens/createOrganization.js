@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Modal, TouchableWithoutFeedback, Linking } from "react-native";
-import { Text, IconButton, Button } from "react-native-paper";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Linking,
+  Image,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function CreateOrganizationScreen({ navigation }) {
@@ -9,7 +15,8 @@ export default function CreateOrganizationScreen({ navigation }) {
 
   const openWebPage = () => {
     // Replace this URL with your documentation URL
-    const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
+    const url =
+      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
 
     // Open the URL in the device's browser
     Linking.openURL(url)
@@ -29,46 +36,43 @@ export default function CreateOrganizationScreen({ navigation }) {
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
-        {/* Add your sidebar buttons here */}
+        <Image
+          style={styles.image}
+          source={require("../../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}
-        >
+          onPress={() => navigation.navigate("Dashboard")}>
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
-        >
+          onPress={() => navigation.navigate("Parking")}>
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}
-        >
+          onPress={() => navigation.navigate("ParkingLot")}>
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}
-        >
+          onPress={() => navigation.navigate("Organization")}>
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}
-        >
+          onPress={() => navigation.navigate("Configuration")}>
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
-        >
+          onPress={() => openWebPage()}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -91,13 +95,11 @@ export default function CreateOrganizationScreen({ navigation }) {
           value={ownerInput}
           placeholder="Enter text here..."
         />
-
-        <View style={styles.buttonContainer}>
-          <IconButton icon="arrow-left-bold" iconColor="#6563DB" size={70} onPress={() => navigation.goBack()} />
-          <TouchableOpacity style={[styles.button, { backgroundColor: "#6563db" }]}>
-            <Text style={styles.buttonText}>Add Organization</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.buttonText}>Add Organization</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: "#AAA9E1", // Sidebar background color
+    backgroundColor: "#cccccc", // Sidebar background color
     padding: 16,
   },
   sidebarButton: {
@@ -118,6 +120,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 10,
     borderRadius: 5,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingVertical: 10,
+    backgroundColor: "#6563db",
+    fontWeight: "bold",
   },
   sidebarButtonText: {
     fontSize: 16,
@@ -134,6 +144,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
+  image: {
+    marginBottom: 40,
+    height: "20%",
+    width: "95%",
+    resizeMode: "contain",
+  },
   label: {
     fontSize: 16,
     marginBottom: 4,
@@ -144,13 +160,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingLeft: 8,
-  },
-  button: {
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    paddingVertical: 10,
-    backgroundColor: "#6563db",
   },
   buttonContainer: {
     flexDirection: "row",

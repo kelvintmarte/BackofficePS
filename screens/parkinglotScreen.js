@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Linking } from "react-native";
+import { Text, View, StyleSheet, Image, Linking } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 
@@ -21,7 +21,8 @@ export default function parkinglotScreen({ navigation }) {
   ];
 
   const openWebPage = () => {
-    const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
+    const url =
+      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
 
     Linking.openURL(url)
       .then((result) => {
@@ -30,54 +31,52 @@ export default function parkinglotScreen({ navigation }) {
         } else {
           console.log("Error");
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error("An error ocurred: ", error);
       });
   };
   return (
-
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
+        <Image
+          style={styles.image}
+          source={require("../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}
-        >
+          onPress={() => navigation.navigate("Main")}>
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
-        >
+          onPress={() => navigation.navigate("Parking")}>
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}
-        >
+          onPress={() => navigation.navigate("ParkingLot")}>
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}
-        >
+          onPress={() => navigation.navigate("Organization")}>
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}
-        >
+          onPress={() => navigation.navigate("Configuration")}>
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
-        >
+          onPress={() => openWebPage()}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -93,20 +92,31 @@ export default function parkinglotScreen({ navigation }) {
           />
           <Rows data={tableData.slice(1)} textStyle={styles.text} />
         </Table>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#6563db" }]}
-            onPress={() => navigation.navigate("CreateParkingLot")}
-          >
-            <Text style={styles.buttonText}>Add Parking Lot</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#6563db" }]}
-            onPress={() => console.log("Delete Button pressed")}
-          >
-            <Text style={styles.buttonText}>Delete Parking Lot</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              marginTop: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => navigation.navigate("CreateParkingLot")}>
+          <Text style={styles.buttonText}>Add Parking Lot</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => console.log("Delete Button pressed")}>
+          <Text style={styles.buttonText}>Delete Parking Lot</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -119,8 +129,14 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: "#AAA9E1", // Sidebar background color
+    backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
+  },
+  image: {
+    marginBottom: 40,
+    height: "20%",
+    width: "95%",
+    resizeMode: "contain",
   },
   sidebarButton: {
     marginBottom: 10,

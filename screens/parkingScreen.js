@@ -65,7 +65,7 @@ export default function parkingScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}>
+          onPress={() => navigation.navigate("DocumentationScreen")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>

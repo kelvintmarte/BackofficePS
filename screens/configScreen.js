@@ -32,20 +32,20 @@ export default function ConfigScreen({ navigation }) {
 
   const businessLocation = "Instituto Tecnológico de Santo Domingo, Republica Dominicana";
 
-  const openWebPage = () => {
-    const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
+  // const openWebPage = () => {
+  //   const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
 
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      }).catch((error) => {
-        console.error("An error ocurred: ", error);
-      });
-  };
+  //   Linking.openURL(url)
+  //     .then((result) => {
+  //       if (result) {
+  //         console.log("OK");
+  //       } else {
+  //         console.log("Error");
+  //       }
+  //     }).catch((error) => {
+  //       console.error("An error ocurred: ", error);
+  //     });
+  // };
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -91,10 +91,10 @@ export default function ConfigScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
-        >
+          onPress={() => navigation.navigate("DocumentationScreen")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
       </View>
 
       {/* Main content */}

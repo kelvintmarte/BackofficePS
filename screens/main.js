@@ -28,22 +28,22 @@ const chartData = {
   ],
 };
 
-const openWebPage = () => {
-  const url =
-    "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
+// const openWebPage = () => {
+//   const url =
+//     "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
 
-  Linking.openURL(url)
-    .then((result) => {
-      if (result) {
-        console.log("OK");
-      } else {
-        console.log("Error");
-      }
-    })
-    .catch((error) => {
-      console.error("An error ocurred: ", error);
-    });
-};
+//   Linking.openURL(url)
+//     .then((result) => {
+//       if (result) {
+//         console.log("OK");
+//       } else {
+//         console.log("Error");
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("An error ocurred: ", error);
+//     });
+// };
 
 const chartConfig = {
   backgroundGradientFrom: "white",
@@ -63,7 +63,7 @@ export default function MainScreen({ navigation }) {
       <View style={styles.sidebar}>
       <Image
         style={styles.image}
-        source={require("../assets/logo-color.png")}
+        source={require("../assets/logo-no-background.png")}
       />
         <TouchableOpacity
           style={styles.sidebarButton}
@@ -97,9 +97,11 @@ export default function MainScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}>
+          onPress={() => navigation.navigate("DocumentationScreen")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
+
       </View>
 
       {/* Main content */}
@@ -163,7 +165,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   sidebar: {
-    flex: 0.4,
+    flex: 0.5,
     backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
   },

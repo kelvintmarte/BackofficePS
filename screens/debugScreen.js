@@ -105,6 +105,15 @@ export default function DebugScreen({ navigation }) {
             >
                 Config Screen
             </Button>
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("Documentation")}
+                width="80%"
+            >
+                Documentation
+            </Button>
         </View>
     );
 }

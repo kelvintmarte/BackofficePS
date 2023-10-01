@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const DocumentationScreen = ({ navigation }) => {
-  
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -52,7 +51,36 @@ const DocumentationScreen = ({ navigation }) => {
       {/* Main content */}
       <View style={styles.mainContent}>
         <Text style={styles.title}>Documentation</Text>
-        {"Add your documentation content here"}
+        
+        {/* Buttons */}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              // Handle the action for the first button
+            }}
+          >
+            <Text style={styles.buttonText}>Button 1</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              // Handle the action for the second button
+            }}
+          >
+            <Text style={styles.buttonText}>Button 2</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              // Handle the action for the third button
+            }}
+          >
+            <Text style={styles.buttonText}>Button 3</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -66,7 +94,7 @@ const styles = StyleSheet.create({
   sidebar: {
     flex: 0.2, // Adjust the width of the sidebar as needed
     backgroundColor: "#cccccc", // Sidebar background color
-    padding: 15,
+    padding: 20,
   },
   sidebarButton: {
     marginBottom: 10,
@@ -95,7 +123,29 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "left",
   },
-  // Add additional styles for your documentation content as needed
+  // Add additional styles for the button container
+  buttonContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1, // Occupy the available space on the right
+  },
+
+  // Add additional styles for the buttons
+  button: {
+    backgroundColor: "#C5D4F4",
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 10, // Adjust spacing between buttons
+    width: "80%", // Set the button width
+  },
+
+  // Add additional styles for the button text
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
 
 export default DocumentationScreen;

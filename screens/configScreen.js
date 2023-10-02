@@ -32,25 +32,11 @@ export default function ConfigScreen({ navigation }) {
 
   const businessLocation = "Instituto Tecnológico de Santo Domingo, Republica Dominicana";
 
-  // const openWebPage = () => {
-  //   const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
-
-  //   Linking.openURL(url)
-  //     .then((result) => {
-  //       if (result) {
-  //         console.log("OK");
-  //       } else {
-  //         console.log("Error");
-  //       }
-  //     }).catch((error) => {
-  //       console.error("An error ocurred: ", error);
-  //     });
-  // };
   return (
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
-      <Image
+        <Image
           style={styles.image}
           source={require("../assets/logo-no-background.png")}
         />
@@ -91,7 +77,7 @@ export default function ConfigScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("DocumentationScreen")}>
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
@@ -131,7 +117,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: "#cccccc", 
+    backgroundColor: "#cccccc",
     padding: 5,
   },
   sidebarButton: {

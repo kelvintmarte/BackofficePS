@@ -20,22 +20,6 @@ export default function parkinglotScreen({ navigation }) {
     ],
   ];
 
-  const openWebPage = () => {
-    const url =
-      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
-
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("An error ocurred: ", error);
-      });
-  };
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -76,7 +60,7 @@ export default function parkinglotScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("DocumentationScreen")}>
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>

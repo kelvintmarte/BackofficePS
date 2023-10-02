@@ -28,23 +28,6 @@ const chartData = {
   ],
 };
 
-// const openWebPage = () => {
-//   const url =
-//     "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
-
-//   Linking.openURL(url)
-//     .then((result) => {
-//       if (result) {
-//         console.log("OK");
-//       } else {
-//         console.log("Error");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("An error ocurred: ", error);
-//     });
-// };
-
 const chartConfig = {
   backgroundGradientFrom: "white",
   backgroundGradientTo: "white",
@@ -61,10 +44,10 @@ export default function MainScreen({ navigation }) {
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
-      <Image
-        style={styles.image}
-        source={require("../assets/logo-no-background.png")}
-      />
+        <Image
+          style={styles.image}
+          source={require("../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Dashboard")}>
@@ -97,7 +80,7 @@ export default function MainScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("DocumentationScreen")}>
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 

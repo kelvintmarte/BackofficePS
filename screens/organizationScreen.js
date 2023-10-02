@@ -11,23 +11,6 @@ export default function OrganizationScreen({ navigation }) {
     ["UNPHU", "Av. John F. Kennedy 1/2, Santo Domingo"],
   ];
 
-  const openWebPage = () => {
-    const url =
-      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
-
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("An error ocurred: ", error);
-      });
-  };
-
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -68,7 +51,7 @@ export default function OrganizationScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("DocumentationScreen")}>
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -84,31 +67,31 @@ export default function OrganizationScreen({ navigation }) {
           />
           <Rows data={tableData.slice(1)} textStyle={styles.text} />
         </Table>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              {
-                backgroundColor: "#6563db",
-                marginBottom: 10,
-                alignSelf: "center",
-                marginTop: 10,
-              },
-            ]}
-            onPress={() => navigation.navigate("CreateOrganization")}>
-            <Text style={styles.buttonText}>Add Organization</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              {
-                backgroundColor: "#6563db",
-                marginBottom: 10,
-                alignSelf: "center",
-              },
-            ]}
-            onPress={() => console.log("Delete Button pressed")}>
-            <Text style={styles.buttonText}>Delete Organization</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+              marginTop: 10,
+            },
+          ]}
+          onPress={() => navigation.navigate("CreateOrganization")}>
+          <Text style={styles.buttonText}>Add Organization</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => console.log("Delete Button pressed")}>
+          <Text style={styles.buttonText}>Delete Organization</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

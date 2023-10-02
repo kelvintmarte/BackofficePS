@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Table, Row, Rows } from "react-native-table-component";
 
 export default function EditProfileScreen({ navigation }) {
     return (

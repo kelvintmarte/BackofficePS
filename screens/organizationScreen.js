@@ -1,10 +1,9 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Linking } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 
 export default function OrganizationScreen({ navigation }) {
-
   const tableData = [
     ["Organization Name", "Direccion"],
     ["INTEC", "Av. de Los Próceres 49, Santo Domingo 10602"],
@@ -12,26 +11,14 @@ export default function OrganizationScreen({ navigation }) {
     ["UNPHU", "Av. John F. Kennedy 1/2, Santo Domingo"],
   ];
 
-  const openWebPage = () => {
-    const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
-
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      }).catch((error) => {
-        console.error("An error ocurred: ", error);
-      });
-  };
-
   return (
-
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
+        <Image
+          style={styles.image}
+          source={require("../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Main")}
@@ -69,7 +56,7 @@ export default function OrganizationScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
+          onPress={() => navigation.navigate("Documentation")}
         >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
@@ -86,20 +73,33 @@ export default function OrganizationScreen({ navigation }) {
           />
           <Rows data={tableData.slice(1)} textStyle={styles.text} />
         </Table>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#6563db" }]}
-            onPress={() => navigation.navigate("CreateOrganization")}
-          >
-            <Text style={styles.buttonText}>Add Organization</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#6563db" }]}
-            onPress={() => console.log("Delete Button pressed")}
-          >
-            <Text style={styles.buttonText}>Delete Organization</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+              marginTop: 10,
+            },
+          ]}
+          onPress={() => navigation.navigate("CreateOrganization")}
+        >
+          <Text style={styles.buttonText}>Add Organization</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => console.log("Delete Button pressed")}
+        >
+          <Text style={styles.buttonText}>Delete Organization</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: "#AAA9E1", // Sidebar background color
+    backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
   },
   sidebarButton: {
@@ -120,6 +120,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 10,
     borderRadius: 5,
+  },
+  image: {
+    marginBottom: 40,
+    height: "20%",
+    width: "95%",
+    resizeMode: "contain",
   },
   sidebarButtonText: {
     fontSize: 16,

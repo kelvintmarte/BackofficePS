@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Linking } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { BarChart, LineChart, PieChart } from "react-native-chart-kit";
 
@@ -28,21 +28,6 @@ const chartData = {
   ],
 };
 
-const openWebPage = () => {
-  const url = "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view"
-
-  Linking.openURL(url)
-    .then((result) => {
-      if (result) {
-        console.log("OK");
-      } else {
-        console.log("Error");
-      }
-    }).catch((error) => {
-      console.error("An error ocurred: ", error);
-    });
-};
-
 const chartConfig = {
   backgroundGradientFrom: "white",
   backgroundGradientTo: "white",
@@ -59,69 +44,78 @@ export default function MainScreen({ navigation }) {
     <View style={styles.container}>
       {/* Sidebar */}
       <View style={styles.sidebar}>
+        <Image
+          style={styles.image}
+          source={require("../assets/logo-no-background.png")}
+        />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Dashboard")}
-        >
+          onPress={() => navigation.navigate("Dashboard")}>
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
-        >
+          onPress={() => navigation.navigate("Parking")}>
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}
-        >
+          onPress={() => navigation.navigate("ParkingLot")}>
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}
-        >
+          onPress={() => navigation.navigate("Organization")}>
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}
-        >
+          onPress={() => navigation.navigate("Configuration")}>
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
-        >
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
+
       </View>
 
       {/* Main content */}
       <ScrollView
         contentContainerStyle={styles.mainContent}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Dashboard</Text>
         {/* Line Chart */}
-        <Text style={styles.chartTitle}>Organization Chart</Text>
+        <Text style={styles.chartTitle}>Organization</Text>
         <View style={styles.chartContainer}>
-          <LineChart data={chartData} width={400} height={300} chartConfig={chartConfig} />
+          <LineChart
+            data={chartData}
+            width={500}
+            height={300}
+            chartConfig={chartConfig}
+          />
         </View>
 
         {/* Bar Chart */}
-        <Text style={styles.chartTitle}>Parking Chart</Text>
+        <Text style={styles.chartTitle}>Parking</Text>
         <View style={styles.chartContainer}>
-          <BarChart data={chartData} width={400} height={300} chartConfig={chartConfig} />
+          <BarChart
+            data={chartData}
+            width={500}
+            height={300}
+            chartConfig={chartConfig}
+          />
         </View>
 
         {/* Pie Chart */}
-        <Text style={styles.chartTitle}>ParkingLot Chart</Text>
+        <Text style={styles.chartTitle}>ParkingLot</Text>
         <View style={styles.chartContainer}>
           <PieChart
             data={[
@@ -130,12 +124,12 @@ export default function MainScreen({ navigation }) {
                 population: 20,
                 color: "rgba(0, 0, 255, 0.7)",
               },
-              { name: "Parqueo Profesores", population: 45, color: "green" },
-              { name: "Parqueo Biblioteca", population: 28, color: "red" },
-              { name: "Torre De parqueo", population: 80, color: "yellow" },
+              { name: "Parqueo Profesores", population: 45, color: "rgba(170, 169, 225, 88)" },
+              { name: "Parqueo Biblioteca", population: 28, color: "rgba(101, 99, 219, 86)" },
+              { name: "Torre De parqueo", population: 80, color: "rgba(42, 41, 92, 36)" },
             ]}
-            width={350}
-            height={200}
+            width={500}
+            height={300}
             chartConfig={chartConfig}
             accessor="population"
             backgroundColor="transparent"
@@ -154,8 +148,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   sidebar: {
-    flex: 0.4,
-    backgroundColor: "#AAA9E1", // Sidebar background color
+    flex: 0.5,
+    backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
   },
   sidebarButton: {
@@ -168,6 +162,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  image: {
+    marginBottom: 40,
+    height: "20%",
+    width: "95%",
+    resizeMode: "contain",
   },
   mainContent: {
     flex: 4,

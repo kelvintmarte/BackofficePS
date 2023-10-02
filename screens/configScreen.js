@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Linking, Image } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ConfigScreen({ navigation }) {

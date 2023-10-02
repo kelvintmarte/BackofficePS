@@ -1,6 +1,5 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 
 export default function DebugScreen({ navigation }) {
@@ -77,7 +76,7 @@ export default function DebugScreen({ navigation }) {
                 width="80%"
             >
                 Create Organization Screen
-            </Button> 
+            </Button>
             <Button
                 style={styles.button}
                 icon="send"

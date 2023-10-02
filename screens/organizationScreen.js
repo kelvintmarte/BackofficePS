@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, Linking } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 
@@ -21,37 +21,43 @@ export default function OrganizationScreen({ navigation }) {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}>
+          onPress={() => navigation.navigate("Main")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}>
+          onPress={() => navigation.navigate("Organization")}
+        >
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Documentation")}>
+          onPress={() => navigation.navigate("Documentation")}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -77,7 +83,8 @@ export default function OrganizationScreen({ navigation }) {
               marginTop: 10,
             },
           ]}
-          onPress={() => navigation.navigate("CreateOrganization")}>
+          onPress={() => navigation.navigate("CreateOrganization")}
+        >
           <Text style={styles.buttonText}>Add Organization</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -89,7 +96,8 @@ export default function OrganizationScreen({ navigation }) {
               alignSelf: "center",
             },
           ]}
-          onPress={() => console.log("Delete Button pressed")}>
+          onPress={() => console.log("Delete Button pressed")}
+        >
           <Text style={styles.buttonText}>Delete Organization</Text>
         </TouchableOpacity>
       </View>

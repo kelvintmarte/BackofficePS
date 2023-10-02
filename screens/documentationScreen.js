@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Linking, Alert
+  Linking
 } from "react-native";
 
 const DocumentationScreen = ({ navigation }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, Linking } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 

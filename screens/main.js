@@ -124,9 +124,9 @@ export default function MainScreen({ navigation }) {
                 population: 20,
                 color: "rgba(0, 0, 255, 0.7)",
               },
-              { name: "Parqueo Profesores", population: 45, color: "green" },
-              { name: "Parqueo Biblioteca", population: 28, color: "red" },
-              { name: "Torre De parqueo", population: 80, color: "yellow" },
+              { name: "Parqueo Profesores", population: 45, color: "rgba(170, 169, 225, 88)" },
+              { name: "Parqueo Biblioteca", population: 28, color: "rgba(101, 99, 219, 86)" },
+              { name: "Torre De parqueo", population: 80, color: "rgba(42, 41, 92, 36)" },
             ]}
             width={500}
             height={300}

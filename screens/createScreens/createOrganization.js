@@ -8,10 +8,11 @@ import {
   Image,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
 
 export default function CreateOrganizationScreen({ navigation }) {
-  const [orgInput, setorgInput] = useState("");
-  const [ownerInput, setownerInput] = useState("");
+  const [organizationName, setorganizationName] = useState("");
+  const [organizationOwner, setorganizationOwner] = useState("");
 
   const openWebPage = () => {
     // Replace this URL with your documentation URL
@@ -32,6 +33,24 @@ export default function CreateOrganizationScreen({ navigation }) {
       });
   };
 
+  const addOrganization = async () => {
+    try {
+      const url = "http://localhost:3000/organization";
+      const response = await axios.post(url, {
+        organizationName,
+        organizationOwner,
+        latitude: 18.48741740674596,
+        longitude: -69.93955729562215,
+        latitudeDelta: 0.000922,
+        longitudeDelta: 0.000421,
+      });
+      console.log("Post response:", response.data);
+      navigation.goBack();
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -42,37 +61,43 @@ export default function CreateOrganizationScreen({ navigation }) {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Dashboard")}>
+          onPress={() => navigation.navigate("Dashboard")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}>
+          onPress={() => navigation.navigate("Organization")}
+        >
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}>
+          onPress={() => openWebPage()}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -83,21 +108,22 @@ export default function CreateOrganizationScreen({ navigation }) {
         <Text style={styles.label}>Organization Name:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setorgInput(text)}
-          value={orgInput}
+          onChangeText={(text) => setorganizationName(text)}
+          value={organizationName}
           placeholder="Enter text here..."
         />
 
         <Text style={styles.label}>Organization Owner:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setownerInput(text)}
-          value={ownerInput}
+          onChangeText={(text) => setorganizationOwner(text)}
+          value={organizationOwner}
           placeholder="Enter text here..."
         />
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.goBack()}>
+          onPress={() => addOrganization()}
+        >
           <Text style={styles.buttonText}>Add Organization</Text>
         </TouchableOpacity>
       </View>

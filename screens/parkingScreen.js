@@ -2,12 +2,26 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
+import axios from "axios";
 
 export default function parkingScreen({ navigation }) {
   const tableData = [
     ["Estacionamiento", "Parqueo", "Precio"],
     ["Parqueo Subterraneo", "1S", "150"],
   ];
+
+  const getData = () => {
+    const parkingUrl = "http://localhost:3000/parking";
+    axios
+      .get(parkingUrl)
+      .then((response) => {
+        const responseData = response.data;
+        console.log("Data from the API:", responseData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data", error);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -87,7 +101,7 @@ export default function parkingScreen({ navigation }) {
               alignSelf: "center",
             },
           ]}
-          onPress={() => console.log("Delete Button pressed")}>
+          onPress={() => getData()}>
           <Text style={styles.buttonText}>Delete Parking Lot</Text>
         </TouchableOpacity>
       </View>

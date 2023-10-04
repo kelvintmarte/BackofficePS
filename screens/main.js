@@ -92,17 +92,7 @@ export default function MainScreen({ navigation }) {
         contentContainerStyle={styles.mainContent}
         showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Dashboard</Text>
-        {/* Line Chart */}
-        <Text style={styles.chartTitle}>Organization</Text>
-        <View style={styles.chartContainer}>
-          <LineChart
-            data={chartData}
-            width={500}
-            height={300}
-            chartConfig={chartConfig}
-          />
-        </View>
-
+              
         {/* Bar Chart */}
         <Text style={styles.chartTitle}>Parking</Text>
         <View style={styles.chartContainer}>

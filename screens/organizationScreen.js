@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
+import axios from "axios";
 
 export default function OrganizationScreen({ navigation }) {
   const tableData = [
@@ -10,6 +11,19 @@ export default function OrganizationScreen({ navigation }) {
     ["PUCMM", "Abraham Lincoln esq. Simón Bolívar"],
     ["UNPHU", "Av. John F. Kennedy 1/2, Santo Domingo"],
   ];
+
+  const getData = () => {
+    const parkingUrl = "http://localhost:3000/organization/all";
+    axios
+      .get(parkingUrl)
+      .then((response) => {
+        const responseData = response.data;
+        console.log("Data from the API:", responseData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data", error);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -96,7 +110,7 @@ export default function OrganizationScreen({ navigation }) {
               alignSelf: "center",
             },
           ]}
-          onPress={() => console.log("Delete Button pressed")}
+          onPress={() => getData()}
         >
           <Text style={styles.buttonText}>Delete Organization</Text>
         </TouchableOpacity>

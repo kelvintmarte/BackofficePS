@@ -17,7 +17,7 @@ export default function parkingScreen() {
   ];
 
   const getData = () => {
-    const parkingUrl = "http://localhost:3000/parking-lot";
+    const parkingUrl = "http://localhost:3000/parking";
     axios
       .get(parkingUrl)
       .then((response) => {

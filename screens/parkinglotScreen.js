@@ -3,11 +3,12 @@ import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export default function parkinglotScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
 
   const tableData = [
@@ -25,6 +26,19 @@ export default function parkinglotScreen() {
       "Parqueo de los Profesores, ubicado al final de la calle detrás de INTEC",
     ],
   ];
+
+  const getData = () => {
+    const parkingUrl = "http://localhost:3000/parking-lot";
+    axios
+      .get(parkingUrl)
+      .then((response) => {
+        const responseData = response.data;
+        console.log("Data from the API:", responseData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data", error);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -82,7 +96,7 @@ export default function parkinglotScreen() {
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-      
+
       </View>
 
       {/* Main content */}
@@ -119,7 +133,7 @@ export default function parkinglotScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => console.log("Delete Button pressed")}
+          onPress={() => getData()}
         >
           <Text style={styles.buttonText}>Delete Parking Lot</Text>
         </TouchableOpacity>

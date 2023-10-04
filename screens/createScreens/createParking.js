@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function CreateParking() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
   const [parkingLot, setParkingLot] = useState("");
   const [parking, setparkingInput] = useState("");
@@ -48,8 +48,10 @@ export default function CreateParking() {
         basePrice,
       });
       console.log("Post response:", response.data);
+      navigation.goBack();
     } catch (error) {
       console.error("error posting data:", error);
+      navigation.goBack();
     }
   };
 
@@ -98,7 +100,7 @@ export default function CreateParking() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}
+          onPress={() => navigation.navigate("Documentation")}
         >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
@@ -109,7 +111,7 @@ export default function CreateParking() {
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-        
+
       </View>
 
       <View style={styles.mainContent}>
@@ -140,7 +142,7 @@ export default function CreateParking() {
           style={[styles.button, { backgroundColor: "#6563db" }]}
           onPress={() => addParking()}
         >
-          <Text style={styles.buttonText}>Add ParkingLot</Text>
+          <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
       </View>
     </View>

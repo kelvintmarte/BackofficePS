@@ -8,9 +8,9 @@ import axios from "axios";
 export default function parkingScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
-  
+
   const tableData = [
     ["Estacionamiento", "Parqueo", "Precio"],
     ["Parqueo Subterraneo", "1S", "150"],
@@ -74,14 +74,14 @@ export default function parkingScreen() {
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
-         {/* Log Out Button */}
+        {/* Log Out Button */}
         <TouchableOpacity
           style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
 
-            </View>
+      </View>
 
       {/* Main content */}
       <View style={styles.mainContent}>
@@ -117,7 +117,7 @@ export default function parkingScreen() {
             },
           ]}
           onPress={() => getData()}>
-          <Text style={styles.buttonText}>Delete Parking Lot</Text>
+          <Text style={styles.buttonText}>Delete Parking</Text>
         </TouchableOpacity>
       </View>
     </View>

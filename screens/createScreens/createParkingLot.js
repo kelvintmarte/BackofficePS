@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function CreateParkingLot() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
   const [organization, setOrganization] = useState("");
   const [name, setName] = useState("");
@@ -90,12 +90,12 @@ export default function CreateParkingLot() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}>
+          onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
-        
-         {/* Log Out Button */}
-         <TouchableOpacity
+
+        {/* Log Out Button */}
+        <TouchableOpacity
           style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>

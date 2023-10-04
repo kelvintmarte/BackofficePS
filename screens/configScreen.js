@@ -1,8 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ConfigScreen({ navigation }) {
+export default function configScreen() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
   const teamMembers = [
     {
       name: "Pablo Diaz",
@@ -79,6 +84,13 @@ export default function ConfigScreen({ navigation }) {
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
+        </TouchableOpacity>
+
+        {/* Log Out Button */}
+       <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
 
       </View>

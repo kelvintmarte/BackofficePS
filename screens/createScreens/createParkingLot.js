@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
-export default function CreateParkingLotScreen({ navigation }) {
+import { useNavigation } from "@react-navigation/native";
+
+export default function CreateParkingLot() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
   const [organization, setOrganization] = useState("");
   const [name, setName] = useState("");
   const [totalParking, setTotalParking] = useState("");
@@ -87,6 +93,14 @@ export default function CreateParkingLotScreen({ navigation }) {
           onPress={() => openWebPage()}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+        
+         {/* Log Out Button */}
+         <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
+
       </View>
 
       <View style={styles.mainContent}>

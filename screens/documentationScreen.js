@@ -7,8 +7,13 @@ import {
   Image,
   Linking
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const DocumentationScreen = ({ navigation }) => {
+export default function documentationScreen() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
 
   const UserManual = () => {
     const manualuserURL =
@@ -109,6 +114,14 @@ const DocumentationScreen = ({ navigation }) => {
         >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
+        {/* Log Out Button */}
+        <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
+        
       </View>
 
       {/* Main content */}
@@ -200,7 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    flex: 1, // Occupy the available space on the right
+    flex: 2, // Occupy the available space on the right
   },
 
   // Add additional styles for the buttons
@@ -220,4 +233,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DocumentationScreen;
+

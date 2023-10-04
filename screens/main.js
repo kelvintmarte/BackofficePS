@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { BarChart, LineChart, PieChart } from "react-native-chart-kit";
+import { useNavigation } from "@react-navigation/native";
 
 const chartData = {
   labels: [
@@ -39,7 +40,12 @@ const chartConfig = {
   strokeWidth: 2,
 };
 
-export default function MainScreen({ navigation }) {
+export default function MainScreen() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
+  
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -84,6 +90,12 @@ export default function MainScreen({ navigation }) {
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
+     {/* Log Out Button */}
+        <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
 
       </View>
 

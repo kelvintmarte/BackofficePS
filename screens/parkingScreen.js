@@ -2,16 +2,22 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-export default function parkingScreen({ navigation }) {
+export default function parkingScreen() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
+  
   const tableData = [
     ["Estacionamiento", "Parqueo", "Precio"],
     ["Parqueo Subterraneo", "1S", "150"],
   ];
 
   const getData = () => {
-    const parkingUrl = "http://localhost:3000/parking";
+    const parkingUrl = "http://localhost:3000/parking-lot";
     axios
       .get(parkingUrl)
       .then((response) => {
@@ -25,6 +31,7 @@ export default function parkingScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+
       {/* Sidebar */}
       <View style={styles.sidebar}>
         <Image
@@ -66,7 +73,15 @@ export default function parkingScreen({ navigation }) {
           onPress={() => navigation.navigate("Documentation")}>
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
-      </View>
+
+         {/* Log Out Button */}
+        <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
+
+            </View>
 
       {/* Main content */}
       <View style={styles.mainContent}>

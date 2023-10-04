@@ -2,8 +2,14 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
+import { useNavigation } from "@react-navigation/native";
 
-export default function parkinglotScreen({ navigation }) {
+export default function parkinglotScreen() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
+
   const tableData = [
     ["Organization", "Name", "Total Parking", "Description"],
     [
@@ -69,6 +75,14 @@ export default function parkinglotScreen({ navigation }) {
         >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
+        {/* Log Out Button */}
+        <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
+      
       </View>
 
       {/* Main content */}

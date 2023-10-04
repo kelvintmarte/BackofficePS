@@ -9,7 +9,13 @@ import {
   TextInput,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-export default function CreateParkingScreen({ navigation }) {
+import { useNavigation } from "@react-navigation/native";
+
+export default function CreateParking() {
+  const navigation = useNavigation(); // Initialize navigation
+  const handleLogout = () => {
+        navigation.navigate("Starting");
+  };
   const [parkingLot, setParkingLot] = useState("");
   const [parking, setparkingInput] = useState("");
   const [basePrice, setpriceInput] = useState(0.0);
@@ -96,6 +102,14 @@ export default function CreateParkingScreen({ navigation }) {
         >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
+
+        {/* Log Out Button */}
+        <TouchableOpacity
+          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
+          onPress={handleLogout}>
+          <Text style={styles.sidebarButtonText}>Log Out</Text>
+        </TouchableOpacity>
+        
       </View>
 
       <View style={styles.mainContent}>

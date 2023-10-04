@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
+import axios from "axios";
 export default function CreateParkingLotScreen({ navigation }) {
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [nameInput, setnameInput] = useState("");
-  const [totalParkingInput, settotalParkingInput] = useState("");
-  const [descInput, setdescInput] = useState("");
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
-  const handleOptionSelect = (value) => {
-    setSelectedValue(value);
-    toggleModal();
-  };
+  const [organization, setOrganization] = useState("");
+  const [name, setName] = useState("");
+  const [totalParking, setTotalParking] = useState("");
+  const [description, setDescription] = useState("");
 
   const openWebPage = () => {
     const url =
@@ -33,6 +23,26 @@ export default function CreateParkingLotScreen({ navigation }) {
       .catch((error) => {
         console.error("An error occurred: ", error);
       });
+  };
+
+  const addParkingLot = async () => {
+    try {
+      const url = "http://localhost:3000/parking-lot"
+      const data = {
+        organization: "64ebb69eca4ddc8ccafb0120",
+        name,
+        totalParking,
+        description,
+        latitude: 18.483006257009542,
+        longitude: -69.93890390277178
+      };
+      const response = await axios.post(url, data)
+      console.log("POST response:", response.data);
+      navigation.goBack()
+    } catch (error) {
+      console.error("Error posting data:", error);
+      navigation.goBack()
+    }
   };
 
   return (
@@ -82,36 +92,32 @@ export default function CreateParkingLotScreen({ navigation }) {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Create ParkingLot</Text>
         <Text style={styles.label}>Select an Organization:</Text>
-        <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
-          <Text>
-            {selectedValue ? selectedValue : "Select an Organization..."}
-          </Text>
-        </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setOrganization(text)}
+        />
 
         <Text style={styles.label}>Name:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setnameInput(text)}
-          value={nameInput}
+          onChangeText={(text) => setName(text)}
         />
 
         <Text style={styles.label}>Total Parking:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => settotalParkingInput(text)}
-          value={totalParkingInput}
+          onChangeText={(text) => setTotalParking(text)}
         />
 
         <Text style={styles.label}>Description:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setdescInput(text)}
-          value={descInput}
+          onChangeText={(text) => setDescription(text)}
         />
 
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => navigation.goBack()}>
+          onPress={() => addParkingLot()}>
           <Text style={styles.buttonText}>Add ParkingLot</Text>
         </TouchableOpacity>
       </View>
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
 
   sidebar: {
     flex: 1,
-    backgroundColor: "#cccccc", 
+    backgroundColor: "#cccccc",
     padding: 16,
   },
   sidebarButton: {
@@ -142,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   mainContent: {
-    flex: 5, 
+    flex: 5,
     padding: 16,
   },
   title: {

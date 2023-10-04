@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import {
   Text,
@@ -7,20 +8,11 @@ import {
   Image,
   TextInput,
 } from "react-native";
-
-export default function CreateParkingScreen({ route, navigation }) {
-  const [parkinglot, setParkinglot] = React.useState("");
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [parkingInput, setparkingInput] = useState("");
-  const [priceInput, setpriceInput] = useState("");
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  useEffect(() => {
-    // GetParkingLotData();
-  }, []);
+import { TouchableOpacity } from "react-native-gesture-handler";
+export default function CreateParkingScreen({ navigation }) {
+  const [parkingLot, setParkingLot] = useState("");
+  const [parking, setparkingInput] = useState("");
+  const [basePrice, setpriceInput] = useState(0.0);
 
   const openWebPage = () => {
     // Replace this URL with your documentation URL
@@ -40,35 +32,20 @@ export default function CreateParkingScreen({ route, navigation }) {
         console.error("An error occurred: ", error);
       });
   };
-  // const GetParkingLotData = () => {
-  //   const axiosUrl = "http://localhost:3000/parking-lot";
-  //   console.log(axiosUrl);
-  //   axios.get(axiosUrl, { withCredentials: true }).then((response) => {
-  //     const newParkinglotList = [];
-  //     response.data.body
-  //       .forEach((parkinglot) => {
-  //         newParkinglotList.push({
-  //           value: parkinglot._id,
-  //           label: parkinglot.name,
-  //         });
-  //         setParkinglot(newParkinglotList);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   });
-  // };
 
-  const handleOptionSelect = (value) => {
-    setSelectedValue(value);
-    toggleModal();
+  const addParking = async () => {
+    try {
+      const url = "http://localhost:3000/parking";
+      const response = await axios.post(url, {
+        parkingLot: "64ebc5d3d922173c3b5f3a5d",
+        parking,
+        basePrice,
+      });
+      console.log("Post response:", response.data);
+    } catch (error) {
+      console.error("error posting data:", error);
+    }
   };
-
-  const comboData = [
-    { label: "Parqueo Subterraneo", value: "Parqueo Subterraneo" },
-    { label: "Parqueo Profesores", value: "Parqueo Profesores" },
-    { label: "Parqueo Biblioteca", value: "Parqueo Biblioteca" },
-  ];
 
   return (
     <View style={styles.container}>
@@ -80,37 +57,43 @@ export default function CreateParkingScreen({ route, navigation }) {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}>
+          onPress={() => navigation.navigate("Main")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}>
+          onPress={() => navigation.navigate("Organization")}
+        >
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => openWebPage()}>
+          onPress={() => openWebPage()}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
       </View>
@@ -118,38 +101,31 @@ export default function CreateParkingScreen({ route, navigation }) {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Create Parking</Text>
         <Text style={styles.label}>Select ParkingLot:</Text>
-        <TouchableOpacity onPress={toggleModal} style={styles.comboButton}>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setParkingLot(text)}
+        />
+        {/* <TouchableOpacity style={styles.comboButton}>
           <Text>
             {selectedValue ? selectedValue : "Select a Parkinglot..."}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <Text style={styles.label}>Name:</Text>
-        <TextInput style={styles.input} value={parkingInput} />
+        <Text style={styles.label}>Parking:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setparkingInput(text)}
+        />
 
-        <Text style={styles.label}>Total Parking:</Text>
-        <TextInput style={styles.input} value={priceInput} />
-
-        {/* <Modal animationType="slide" transparent={true} visible={isModalVisible}>
-          <TouchableWithoutFeedback onPress={toggleModal}>
-            <View style={styles.modalOverlay}></View>
-          </TouchableWithoutFeedback>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Select an option:</Text>
-            {comboData.map((item) => (
-              <TouchableOpacity
-                key={item.value}
-                style={styles.modalOption}
-                onPress={() => handleOptionSelect(item.value)}
-              >
-                <Text>{item.label}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </Modal> */}
-
+        <Text style={styles.label}>Price:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setpriceInput(parseFloat(text))}
+        />
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: "#6563db" }]}>
+          style={[styles.button, { backgroundColor: "#6563db" }]}
+          onPress={() => addParking()}
+        >
           <Text style={styles.buttonText}>Add ParkingLot</Text>
         </TouchableOpacity>
       </View>

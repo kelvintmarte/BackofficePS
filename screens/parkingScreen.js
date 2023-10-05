@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Table, Row, Rows } from "react-native-table-component";
+import { Table } from "react-native-table-component";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
@@ -6,32 +6,61 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 export default function parkingScreen() {
+  const [isBooked, setIsBooked] = useState([]);
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
 
-  const tableData = [
-    ["Estacionamiento", "Parqueo", "Precio"],
-    ["Parqueo Subterraneo", "1S", "150"],
-  ];
+  // const tableData = [
+  //   ["Estacionamiento", "Parqueo", "Precio"],
+  //   ["Parqueo Subterraneo", "1S", "150"],
+  // ];
 
-  const getData = () => {
-    const parkingUrl = "http://localhost:3000/parking";
-    axios
-      .get(parkingUrl)
-      .then((response) => {
-        const responseData = response.data;
-        console.log("Data from the API:", responseData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data", error);
+  const renderTableData = () => {
+    useEffect(() => {
+      axios.get("http://localhost:3000/parking").then((response) => {
+        console.log(response.data.body);
+        setIsBooked(response.data.body);
       });
+    }, []);
+    return (
+      <table>
+        <thead style={styles.head}>
+          <tr>
+            <td>Estacionamiento</td>
+            <td>Parqueo</td>
+            <td>Precio</td>
+          </tr>
+        </thead>
+        <tbody>
+          {isBooked?.map((val) => (
+            <tr style={styles.text}>
+              <td>{val.parkingLot.name}</td>
+              <td>{val.parking}</td>
+              <td>{val.basePrice}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   };
+
+  // const getData = () => {
+  //  const parkingUrl = "http://localhost:3000/parking";
+  //  axios
+  //    .get(parkingUrl)
+  //    .then((response) => {
+  //      dataBody = response.data;
+  //      console.log("Data from the API:", dataBody);
+  //    })
+  //    .catch((error) => {
+  //      console.error("Error fetching data", error);
+  //    });
+  //};
 
   return (
     <View style={styles.container}>
-
       {/* Sidebar */}
       <View style={styles.sidebar}>
         <Image
@@ -40,59 +69,65 @@ export default function parkingScreen() {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}>
+          onPress={() => navigation.navigate("Main")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}>
+          onPress={() => navigation.navigate("Organization")}
+        >
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Documentation")}>
+          onPress={() => navigation.navigate("Documentation")}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Main content */}
       <View style={styles.mainContent}>
         <Text style={styles.title}>Parking</Text>
         <Table borderStyle={{ borderWidth: 1 }}>
-          <Row
+          {/*<Row
             data={["Estacionamiento", "Parqueo", "Precio"]}
             style={styles.head}
-            textStyle={[styles.text, { color: "white" }]}
-          />
-          <Rows data={tableData.slice(1)} textStyle={styles.text} />
+  textStyle={[styles.text, { color: "white" }]}/>*/}
+          {/* <Rows data={dataBody.body?.slice(1)} textStyle={styles.text} /> */}
+          {renderTableData()}
         </Table>
         <TouchableOpacity
           style={[
@@ -104,7 +139,8 @@ export default function parkingScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => navigation.navigate("CreateParking")}>
+          onPress={() => navigation.navigate("CreateParking")}
+        >
           <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -116,7 +152,8 @@ export default function parkingScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => getData()}>
+          onPress={() => getData()}
+        >
           <Text style={styles.buttonText}>Delete Parking</Text>
         </TouchableOpacity>
       </View>
@@ -155,8 +192,18 @@ const styles = StyleSheet.create({
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
   },
-  head: { height: 40, backgroundColor: "#6563db" },
-  text: { margin: 6, textAlign: "center" },
+  head: {
+    height: 40,
+    backgroundColor: "#6563db",
+    textAlign: "center",
+    color: "#fff",
+    fontFamily: "Arial",
+  },
+  text: {
+    margin: 10,
+    textAlign: "center",
+    fontFamily: "Arial",
+  },
   button: {
     flex: 1,
     justifyContent: "center",

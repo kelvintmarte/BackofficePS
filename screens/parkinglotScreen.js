@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Table, Row, Rows } from "react-native-table-component";
@@ -6,39 +6,69 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 export default function parkinglotScreen() {
+  const [isBooked, setIsBooked] = useState([]);
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
 
-  const tableData = [
-    ["Organization", "Name", "Total Parking", "Description"],
-    [
-      "INTEC",
-      "Parqueo subterraneo",
-      "80",
-      "Parqueo del subterraneo, ubicado en la calle detrás de INTEC",
-    ],
-    [
-      "INTEC",
-      "Parqueo Profesores",
-      "40",
-      "Parqueo de los Profesores, ubicado al final de la calle detrás de INTEC",
-    ],
-  ];
+  // const tableData = [
+  //   ["Organization", "Name", "Total Parking", "Description"],
+  //   [
+  //     "INTEC",
+  //     "Parqueo subterraneo",
+  //     "80",
+  //     "Parqueo del subterraneo, ubicado en la calle detrás de INTEC",
+  //   ],
+  //   [
+  //     "INTEC",
+  //     "Parqueo Profesores",
+  //     "40",
+  //     "Parqueo de los Profesores, ubicado al final de la calle detrás de INTEC",
+  //   ],
+  // ];
 
-  const getData = () => {
-    const parkingUrl = "http://localhost:3000/parking-lot";
-    axios
-      .get(parkingUrl)
-      .then((response) => {
-        const responseData = response.data;
-        console.log("Data from the API:", responseData);
-      })
-      .catch((error) => {
-        console.error("Error fetching data", error);
+  const renderTableData = () => {
+    useEffect(() => {
+      axios.get("http://localhost:3000/parking-lot").then((response) => {
+        console.log(response.data.body);
+        setIsBooked(response.data.body);
       });
-  };
+    }, []);
+    return (
+      <table>
+        <thead style={styles.head}>
+          <tr>
+            <td>Name</td>
+            <td>Total Parking</td>
+            <td>Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          {isBooked?.map((val) => (
+            <tr style={styles.text}>
+              <td>{val.name}</td>
+              <td>{val.totalParking}</td>
+              <td>{val.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+
+  // const getData = () => {
+  //   const parkingUrl = "http://localhost:3000/parking-lot";
+  //   axios
+  //     .get(parkingUrl)
+  //     .then((response) => {
+  //       const responseData = response.data;
+  //       console.log("Data from the API:", responseData);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data", error);
+  //     });
+  // };
 
   return (
     <View style={styles.container}>
@@ -92,23 +122,24 @@ export default function parkinglotScreen() {
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Main content */}
       <View style={styles.mainContent}>
         <Text style={styles.title}>Parking Lot</Text>
         <Table borderStyle={{ borderWidth: 1 }}>
-          <Row
+          {renderTableData()}
+          {/* <Row
             data={["Organization", "Name", "Total Parking", "Description"]}
             style={styles.head}
             textStyle={[styles.text, { color: "white" }]}
           />
-          <Rows data={tableData.slice(1)} textStyle={styles.text} />
+          <Rows data={tableData.slice(1)} textStyle={styles.text} /> */}
         </Table>
         <TouchableOpacity
           style={[
@@ -179,8 +210,18 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontWeight: "bold",
   },
-  head: { height: 40, backgroundColor: "#6563db" },
-  text: { margin: 6, textAlign: "center" },
+  head: {
+    height: 40,
+    backgroundColor: "#6563db",
+    textAlign: "center",
+    color: "#fff",
+    fontFamily: "Arial",
+  },
+  text: {
+    margin: 10,
+    textAlign: "center",
+    fontFamily: "Arial",
+  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

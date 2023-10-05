@@ -17,7 +17,7 @@ export default function parkingScreen() {
   //   ["Parqueo Subterraneo", "1S", "150"],
   // ];
 
-  const renderTableData = () => {
+  let renderTableData = () => {
     useEffect(() => {
       axios.get("http://localhost:3000/parking").then((response) => {
         console.log(response.data.body);
@@ -167,6 +167,9 @@ const styles = StyleSheet.create({
     flexDirection: "row", // Use 'column' if you want a sidebar on top of main content
   },
   sidebar: {
+    height: "100%",
+    position: "fixed",
+    width: "250px",
     flex: 1,
     backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
@@ -191,6 +194,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
+    marginLeft: "250px"
   },
   head: {
     height: 40,

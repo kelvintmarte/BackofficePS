@@ -144,11 +144,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
   },
-
   sidebar: {
+    height: "100%",
+    position: "fixed",
+    width: "250px",
     flex: 1,
-    backgroundColor: "#cccccc",
-    padding: 16,
+    backgroundColor: "#cccccc", // Sidebar background color
+    padding: 5,
   },
   sidebarButton: {
     marginBottom: 10,
@@ -162,8 +164,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   mainContent: {
-    flex: 5,
-    padding: 16,
+    flex: 4, // Adjust the flex ratio as needed
+    padding: 20,
+    marginLeft: "250px"
   },
   title: {
     fontSize: 24,

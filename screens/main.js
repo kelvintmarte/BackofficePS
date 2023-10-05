@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { BarChart, LineChart, PieChart } from "react-native-chart-kit";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { BarChart, PieChart } from "react-native-chart-kit";
 import { useNavigation } from "@react-navigation/native";
 
 const chartData = {
@@ -43,9 +43,9 @@ const chartConfig = {
 export default function MainScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
-  
+
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -56,55 +56,59 @@ export default function MainScreen() {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Dashboard")}>
+          onPress={() => navigation.navigate("Dashboard")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Organization")}>
+          onPress={() => navigation.navigate("Organization")}
+        >
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Documentation")}>
+          onPress={() => navigation.navigate("Documentation")}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
-     {/* Log Out Button */}
+        {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Main content */}
-      <ScrollView
-        contentContainerStyle={styles.mainContent}
-        showsVerticalScrollIndicator={false}>
+      <View style={styles.mainContent}>
         <Text style={styles.title}>Dashboard</Text>
-              
+
         {/* Bar Chart */}
         <Text style={styles.chartTitle}>Parking</Text>
         <View style={styles.chartContainer}>
@@ -126,9 +130,21 @@ export default function MainScreen() {
                 population: 20,
                 color: "rgba(0, 0, 255, 0.7)",
               },
-              { name: "Parqueo Profesores", population: 45, color: "rgba(170, 169, 225, 88)" },
-              { name: "Parqueo Biblioteca", population: 28, color: "rgba(101, 99, 219, 86)" },
-              { name: "Torre De parqueo", population: 80, color: "rgba(42, 41, 92, 36)" },
+              {
+                name: "Parqueo Profesores",
+                population: 45,
+                color: "rgba(170, 169, 225, 88)",
+              },
+              {
+                name: "Parqueo Biblioteca",
+                population: 28,
+                color: "rgba(101, 99, 219, 86)",
+              },
+              {
+                name: "Torre De parqueo",
+                population: 80,
+                color: "rgba(42, 41, 92, 36)",
+              },
             ]}
             width={500}
             height={300}
@@ -139,7 +155,7 @@ export default function MainScreen() {
             absolute
           />
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -150,7 +166,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   sidebar: {
-    flex: 0.5,
+    height: "100%",
+    position: "fixed",
+    width: "250px",
+    flex: 1,
     backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
   },
@@ -172,8 +191,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   mainContent: {
-    flex: 4,
+    flex: 4, // Adjust the flex ratio as needed
     padding: 20,
+    marginLeft: "250px",
   },
   title: {
     fontSize: 24,

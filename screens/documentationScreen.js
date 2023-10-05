@@ -177,9 +177,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   sidebar: {
-    flex: 0.2, // Adjust the width of the sidebar as needed
+    height: "100%",
+    position: "fixed",
+    width: "250px",
+    flex: 1,
     backgroundColor: "#cccccc", // Sidebar background color
-    padding: 20,
+    padding: 5,
   },
   sidebarButton: {
     marginBottom: 10,
@@ -199,8 +202,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   mainContent: {
-    flex: 0.7, // Adjust the width of the main content area as needed
+    flex: 4, // Adjust the flex ratio as needed
     padding: 20,
+    marginLeft: "250px"
   },
   title: {
     fontSize: 24,

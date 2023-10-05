@@ -152,7 +152,7 @@ export default function parkingScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => getData()}
+          onPress={() => console.log("Delete button selected")}
         >
           <Text style={styles.buttonText}>Delete Parking</Text>
         </TouchableOpacity>

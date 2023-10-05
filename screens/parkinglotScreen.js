@@ -151,7 +151,7 @@ export default function parkinglotScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => navigation.navigate("CreateParkingLot")}
+          onPress={() => console.log("Delete button selected")}
         >
           <Text style={styles.buttonText}>Add Parking Lot</Text>
         </TouchableOpacity>

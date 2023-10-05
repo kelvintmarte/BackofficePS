@@ -44,10 +44,10 @@ export default function CreateParkingLot() {
       };
       const response = await axios.post(url, data)
       console.log("POST response:", response.data);
-      navigation.goBack()
+      navigation.navigate("ParkingLot")
     } catch (error) {
       console.error("Error posting data:", error);
-      navigation.goBack()
+      navigation.navigate("ParkingLot")
     }
   };
 

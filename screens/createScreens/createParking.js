@@ -48,10 +48,10 @@ export default function CreateParking() {
         basePrice,
       });
       console.log("Post response:", response.data);
-      navigation.goBack();
+      navigation.navigate("Parking");
     } catch (error) {
       console.error("error posting data:", error);
-      navigation.goBack();
+      navigation.navigate("Parking");
     }
   };
 

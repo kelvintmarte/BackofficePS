@@ -17,7 +17,7 @@ export default function parkingScreen() {
   //   ["Parqueo Subterraneo", "1S", "150"],
   // ];
 
-  let renderTableData = () => {
+  const renderTableData = () => {
     useEffect(() => {
       axios.get("http://localhost:3000/parking").then((response) => {
         console.log(response.data.body);

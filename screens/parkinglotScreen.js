@@ -28,7 +28,7 @@ export default function parkinglotScreen() {
   //   ],
   // ];
 
-  let renderTableData = () => {
+  const renderTableData = () => {
     useEffect(() => {
       axios.get("http://localhost:3000/parking-lot").then((response) => {
         console.log(response.data.body);
@@ -151,7 +151,7 @@ export default function parkinglotScreen() {
               alignSelf: "center",
             },
           ]}
-          onPress={() => console.log("Delete button selected")}
+          onPress={() => navigation.navigate("CreateParkingLot")}
         >
           <Text style={styles.buttonText}>Add Parking Lot</Text>
         </TouchableOpacity>

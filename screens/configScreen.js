@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -8,10 +8,16 @@ export default function configScreen() {
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
+  const [activeScreen, setActiveScreen] = useState("Configuration");
+
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName);
+  };
 
   const toggleLanguage = () => {
-    console.log("Language change")
-  }
+    console.log("Language change");
+  };
 
   return (
     <View style={styles.container}>
@@ -50,25 +56,29 @@ export default function configScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={[
+            styles.sidebarButton,
+            activeScreen === "Configuration" && styles.activeButton,
+          ]}
           onPress={() => navigation.navigate("Configuration")}
         >
-          <Text style={styles.sidebarButtonText}>Configuration</Text>
+          <Text style={[styles.sidebarButtonText, activeScreen === "Configuration" && styles.activeButtonText]}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Documentation")}>
+          onPress={() => navigation.navigate("Documentation")}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Main content */}
@@ -119,7 +129,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
-    marginLeft: "250px"
+    marginLeft: "250px",
   },
   image: {
     marginBottom: 40,
@@ -170,4 +180,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
   },
+  activeButton: {
+    backgroundColor: "#6563db",
+  },
+  activeButtonText: {
+    color: "lightgray",
+  }
 });

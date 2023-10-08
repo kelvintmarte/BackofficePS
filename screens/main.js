@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { BarChart, PieChart } from "react-native-chart-kit";
@@ -45,6 +45,12 @@ export default function MainScreen() {
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
+  const [activeScreen, setActiveScreen] = useState("Dashboard");
+
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName);
+  };
 
   return (
     <View style={styles.container}>
@@ -55,10 +61,20 @@ export default function MainScreen() {
           source={require("../assets/logo-no-background.png")}
         />
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={[
+            styles.sidebarButton,
+            activeScreen === "Dashboard" && styles.activeButton,
+          ]}
           onPress={() => navigation.navigate("Dashboard")}
         >
-          <Text style={styles.sidebarButtonText}>Dashboard</Text>
+          <Text
+            style={[
+              styles.sidebarButtonText,
+              activeScreen === "Dashboard" && styles.activeButtonText,
+            ]}
+          >
+            Dashboard
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -229,5 +245,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  activeButton: {
+    backgroundColor: "#6563db",
+  },
+  activeButtonText: {
+    color: "lightgray",
   },
 });

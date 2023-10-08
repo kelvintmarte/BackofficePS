@@ -11,11 +11,12 @@ export default function parkingScreen() {
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
+  const [activeScreen, setActiveScreen] = useState("Parking");
 
-  // const tableData = [
-  //   ["Estacionamiento", "Parqueo", "Precio"],
-  //   ["Parqueo Subterraneo", "1S", "150"],
-  // ];
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName);
+  };
 
   const renderTableData = () => {
     useEffect(() => {
@@ -46,19 +47,6 @@ export default function parkingScreen() {
     );
   };
 
-  // const getData = () => {
-  //  const parkingUrl = "http://localhost:3000/parking";
-  //  axios
-  //    .get(parkingUrl)
-  //    .then((response) => {
-  //      dataBody = response.data;
-  //      console.log("Data from the API:", dataBody);
-  //    })
-  //    .catch((error) => {
-  //      console.error("Error fetching data", error);
-  //    });
-  //};
-
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -75,10 +63,16 @@ export default function parkingScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={[
+            styles.sidebarButton,
+            activeScreen === "Parking" && styles.activeButton,
+          ]}
           onPress={() => navigation.navigate("Parking")}
         >
-          <Text style={styles.sidebarButtonText}>Parkings</Text>
+          <Text style={[
+            styles.sidebarButtonText,
+            activeScreen === "Parking" && styles.activeButtonText,
+          ]}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -226,5 +220,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "left",
+  },
+  activeButton: {
+    backgroundColor: "#6563db",
+  },
+  activeButtonText: {
+    color: "lightgray",
   },
 });

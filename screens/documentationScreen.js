@@ -1,11 +1,11 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
-  Linking
+  Linking,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -13,6 +13,12 @@ export default function documentationScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
     navigation.navigate("Starting");
+  };
+  const [activeScreen, setActiveScreen] = useState("Documentation");
+
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName);
   };
 
   const UserManual = () => {
@@ -64,7 +70,6 @@ export default function documentationScreen() {
       .catch((error) => {
         console.error("An error ocurred: ", error);
       });
-
   };
   const Coda = () => {
     const codaUrl =
@@ -126,19 +131,29 @@ export default function documentationScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={[
+            styles.sidebarButton,
+            activeScreen === "Documentation" && styles.activeButton,
+          ]}
           onPress={() => navigation.navigate("Documentation")}
         >
-          <Text style={styles.sidebarButtonText}>Documentation</Text>
+          <Text
+            style={[
+              styles.sidebarButtonText,
+              activeScreen === "Documentation" && styles.activeButtonText,
+            ]}
+          >
+            Documentation
+          </Text>
         </TouchableOpacity>
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Main content */}
@@ -148,7 +163,15 @@ export default function documentationScreen() {
         {/* Buttons */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#6563db",
+                marginBottom: 10,
+                marginTop: 10,
+                alignSelf: "center",
+              },
+            ]}
             onPress={() => {
               UserManual();
             }}
@@ -157,7 +180,15 @@ export default function documentationScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#6563db",
+                marginBottom: 10,
+                marginTop: 10,
+                alignSelf: "center",
+              },
+            ]}
             onPress={() => {
               TechnicalManual();
             }}
@@ -166,7 +197,15 @@ export default function documentationScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#6563db",
+                marginBottom: 10,
+                marginTop: 10,
+                alignSelf: "center",
+              },
+            ]}
             onPress={() => {
               ImplementationManual();
             }}
@@ -175,7 +214,15 @@ export default function documentationScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#6563db",
+                marginBottom: 10,
+                marginTop: 10,
+                alignSelf: "center",
+              },
+            ]}
             onPress={() => {
               Coda();
             }}
@@ -184,11 +231,18 @@ export default function documentationScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#6563db",
+                marginBottom: 10,
+                marginTop: 10,
+                alignSelf: "center",
+              },
+            ]}
             onPress={() => {
-              navigation.navigate("Support")
+              navigation.navigate("Support");
             }}
-
           >
             <Text style={styles.buttonText}>Contact Support</Text>
           </TouchableOpacity>
@@ -196,7 +250,7 @@ export default function documentationScreen() {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -231,7 +285,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
-    marginLeft: "250px"
+    marginLeft: "250px",
   },
   title: {
     fontSize: 24,
@@ -261,7 +315,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+    color: "#fff",
+  },
+  activeButton: {
+    backgroundColor: "#6563db",
+  },
+  activeButtonText: {
+    color: "lightgray",
   },
 });
-
-

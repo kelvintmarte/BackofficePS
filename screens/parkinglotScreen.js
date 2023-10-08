@@ -12,21 +12,12 @@ export default function parkinglotScreen() {
     navigation.navigate("Starting");
   };
 
-  // const tableData = [
-  //   ["Organization", "Name", "Total Parking", "Description"],
-  //   [
-  //     "INTEC",
-  //     "Parqueo subterraneo",
-  //     "80",
-  //     "Parqueo del subterraneo, ubicado en la calle detrás de INTEC",
-  //   ],
-  //   [
-  //     "INTEC",
-  //     "Parqueo Profesores",
-  //     "40",
-  //     "Parqueo de los Profesores, ubicado al final de la calle detrás de INTEC",
-  //   ],
-  // ];
+  const [activeScreen, setActiveScreen] = useState("ParkingLot");
+
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName);
+  };
 
   const renderTableData = () => {
     useEffect(() => {
@@ -57,19 +48,6 @@ export default function parkinglotScreen() {
     )
   }
 
-  // const getData = () => {
-  //   const parkingUrl = "http://localhost:3000/parking-lot";
-  //   axios
-  //     .get(parkingUrl)
-  //     .then((response) => {
-  //       const responseData = response.data;
-  //       console.log("Data from the API:", responseData);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data", error);
-  //     });
-  // };
-
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -93,10 +71,16 @@ export default function parkinglotScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={[
+            styles.sidebarButton,
+            activeScreen === "ParkingLot" && styles.activeButton,
+          ]}
           onPress={() => navigation.navigate("ParkingLot")}
         >
-          <Text style={styles.sidebarButtonText}>Parking Lots</Text>
+          <Text style={[
+            styles.sidebarButtonText,
+            activeScreen === "ParkingLot" && styles.activeButtonText,
+          ]}>Parking Lots</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -243,5 +227,11 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 18,
+  },
+  activeButton: {
+    backgroundColor: "#6563db",
+  },
+  activeButtonText: {
+    color: "lightgray",
   },
 });

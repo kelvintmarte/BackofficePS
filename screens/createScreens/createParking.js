@@ -65,7 +65,7 @@ export default function CreateParking() {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => navigation.navigate("Dashboard")}
         >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>

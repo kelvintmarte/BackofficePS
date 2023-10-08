@@ -60,7 +60,7 @@ export default function CreateParkingLot() {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}>
+          onPress={() => navigation.navigate("Dashboard")}>
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 

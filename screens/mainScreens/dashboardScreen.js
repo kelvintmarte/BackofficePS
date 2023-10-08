@@ -58,7 +58,7 @@ export default function DashboardScreen() {
       <View style={styles.sidebar}>
         <Image
           style={styles.image}
-          source={require("../assets/logo-no-background.png")}
+          source={require("../../assets/logo-no-background.png")}
         />
         <TouchableOpacity
           style={[

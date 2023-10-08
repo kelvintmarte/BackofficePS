@@ -31,11 +31,11 @@ export default function OrganizationScreen({ navigation }) {
       <View style={styles.sidebar}>
         <Image
           style={styles.image}
-          source={require("../assets/logo-no-background.png")}
+          source={require("../../assets/logo-no-background.png")}
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => navigation.navigate("Dashboard")}
         >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>

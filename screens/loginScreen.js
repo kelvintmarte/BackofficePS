@@ -46,7 +46,7 @@ export default function App({ navigation }) {
           let user = response.data.body.user;
           console.log("User: ");
           console.log(user);
-          navigation.navigate("Main", user);
+          navigation.navigate("Dashboard", user);
         } else {
           setCustomAlert({
             severity: "error",

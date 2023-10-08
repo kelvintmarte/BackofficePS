@@ -18,7 +18,7 @@ export default function DebugScreen({ navigation }) {
                 style={styles.button}
                 icon="send"
                 mode="contained"
-                onPress={() => navigation.navigate("Main")}
+                onPress={() => navigation.navigate("Dashboard")}
                 width="80%"
             >
                 Main
@@ -76,24 +76,6 @@ export default function DebugScreen({ navigation }) {
                 width="80%"
             >
                 Create Organization Screen
-            </Button>
-            <Button
-                style={styles.button}
-                icon="send"
-                mode="contained"
-                onPress={() => navigation.navigate("Profile")}
-                width="80%"
-            >
-                Profile Screen
-            </Button>
-            <Button
-                style={styles.button}
-                icon="send"
-                mode="contained"
-                onPress={() => navigation.navigate("EditProfile")}
-                width="80%"
-            >
-                Edit Profile Screen
             </Button>
             <Button
                 style={styles.button}

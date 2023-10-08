@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function documentationScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
 
   const UserManual = () => {
@@ -65,23 +65,23 @@ export default function documentationScreen() {
         console.error("An error ocurred: ", error);
       });
 
-    };
-    const Coda = () => {
-      const codaUrl =
-        "https://coda.io/d/Parking-Spot_d6cYox1V22X/Parking-Spot_suxKP#_luqBB";
-  
-      Linking.openURL(codaUrl)
-        .then((result) => {
-          if (result) {
-            console.log("Open Coda");
-          } else {
-            console.log("Error");
-          }
-        })
-        .catch((error) => {
-          console.error("An error ocurred: ", error);
-        });
-    };
+  };
+  const Coda = () => {
+    const codaUrl =
+      "https://coda.io/d/Parking-Spot_d6cYox1V22X/Parking-Spot_suxKP#_luqBB";
+
+    Linking.openURL(codaUrl)
+      .then((result) => {
+        if (result) {
+          console.log("Open Coda");
+        } else {
+          console.log("Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error ocurred: ", error);
+      });
+  };
   return (
     <View style={styles.container}>
       {/* Sidebar */}
@@ -138,7 +138,7 @@ export default function documentationScreen() {
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-        
+
       </View>
 
       {/* Main content */}
@@ -173,7 +173,7 @@ export default function documentationScreen() {
           >
             <Text style={styles.buttonText}>Implementation manual</Text>
           </TouchableOpacity>
-            
+
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -186,9 +186,9 @@ export default function documentationScreen() {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate("Configuration")
+              navigation.navigate("Support")
             }}
-            
+
           >
             <Text style={styles.buttonText}>Contact Support</Text>
           </TouchableOpacity>

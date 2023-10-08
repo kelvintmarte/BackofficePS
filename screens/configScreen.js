@@ -6,36 +6,12 @@ import { useNavigation } from "@react-navigation/native";
 export default function configScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
-        navigation.navigate("Starting");
+    navigation.navigate("Starting");
   };
-  const teamMembers = [
-    {
-      name: "Pablo Diaz",
-      role: "Desarrollador BackEnd",
-      email: "pablo.diaz@example.com",
-      phone: "123-456-7890",
-    },
-    {
-      name: "Mariano Vasquez",
-      role: "Desarrollador FrontEnd",
-      email: "mariano.vasquez@example.com",
-      phone: "987-654-3210",
-    },
-    {
-      name: "Diego Lobato",
-      role: "Desarrollador FrontEnd/Project Manager",
-      email: "diego.lobato@example.com",
-      phone: "555-555-5555",
-    },
-    {
-      name: "Kelvin Marte",
-      role: "Desarrollador FrontEnd",
-      email: "kelvintmarte@gmail.com",
-      phone: "829-801-0270",
-    },
-  ];
 
-  const businessLocation = "Instituto Tecnológico de Santo Domingo, Republica Dominicana";
+  const toggleLanguage = () => {
+    console.log("Language change")
+  }
 
   return (
     <View style={styles.container}>
@@ -87,7 +63,7 @@ export default function configScreen() {
         </TouchableOpacity>
 
         {/* Log Out Button */}
-       <TouchableOpacity
+        <TouchableOpacity
           style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
           onPress={handleLogout}>
           <Text style={styles.sidebarButtonText}>Log Out</Text>
@@ -98,25 +74,19 @@ export default function configScreen() {
       {/* Main content */}
       <View style={styles.mainContent}>
         <Text style={styles.title}>Configuration</Text>
-
-        <View style={styles.teamInfo}>
-          <View style={styles.teamMembers}>
-            <Text style={styles.teamTitle}>Team Members</Text>
-            {teamMembers.map((member, index) => (
-              <View key={index} style={styles.teamMember}>
-                <Text>Name: {member.name}</Text>
-                <Text>Role: {member.role}</Text>
-                <Text>Email: {member.email}</Text>
-                <Text>Phone: {member.phone}</Text>
-              </View>
-            ))}
-          </View>
-
-          <View style={styles.businessLocation}>
-            <Text style={styles.locationTitle}>Business Location</Text>
-            <Text>{businessLocation}</Text>
-          </View>
-        </View>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => toggleLanguage()}
+        >
+          <Text style={styles.buttonText}>Change Language</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -186,5 +156,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+  },
+  button: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingVertical: 10,
+    fullWidth: true,
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
   },
 });

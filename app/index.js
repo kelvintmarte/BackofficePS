@@ -17,6 +17,7 @@ import ConfigScreen from '../screens/configScreen.js';
 import ProfileScreen from '../screens/profileScreen.js';
 import EditProfileScreen from '../screens/editProfileScreen.js';
 import DocumentationScreen from '../screens/documentationScreen.js';
+import supportScreen from '../screens/supportScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -39,6 +40,7 @@ const App = () => {
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 <Stack.Screen name="EditProfile" component={EditProfileScreen} />
                 <Stack.Screen name="Documentation" component={DocumentationScreen} />
+                <Stack.Screen name="Support" component={supportScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

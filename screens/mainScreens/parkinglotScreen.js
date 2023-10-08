@@ -5,7 +5,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-export default function parkinglotScreen() {
+export default function ParkingLotScreen() {
   const [isBooked, setIsBooked] = useState([]);
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {

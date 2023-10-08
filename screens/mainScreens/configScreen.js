@@ -143,30 +143,6 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontWeight: "bold",
   },
-  teamInfo: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  teamMembers: {
-    flex: 1,
-    marginRight: 10,
-  },
-  teamTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  teamMember: {
-    marginBottom: 15,
-  },
-  businessLocation: {
-    flex: 1,
-  },
-  locationTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
   button: {
     flex: 1,
     justifyContent: "center",

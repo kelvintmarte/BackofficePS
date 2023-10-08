@@ -112,7 +112,6 @@ export default function DashboardScreen() {
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
-        {/* Log Out Button */}
         <TouchableOpacity
           style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
           onPress={handleLogout}

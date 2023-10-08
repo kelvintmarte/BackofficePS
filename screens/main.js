@@ -126,7 +126,7 @@ export default function MainScreen() {
         <Text style={styles.title}>Dashboard</Text>
 
         {/* Bar Chart */}
-        <Text style={styles.chartTitle}>Parking</Text>
+        <Text style={styles.chartTitle}>ParkingLot</Text>
         <View style={styles.chartContainer}>
           <BarChart
             data={chartData}
@@ -137,29 +137,19 @@ export default function MainScreen() {
         </View>
 
         {/* Pie Chart */}
-        <Text style={styles.chartTitle}>ParkingLot</Text>
+        <Text style={styles.chartTitle}>Parking</Text>
         <View style={styles.chartContainer}>
           <PieChart
             data={[
               {
-                name: "Parqueo subterraneo",
+                name: "Occupied",
                 population: 20,
-                color: "rgba(0, 0, 255, 0.7)",
+                color: "red",
               },
               {
-                name: "Parqueo Profesores",
+                name: "Available",
                 population: 45,
-                color: "rgba(170, 169, 225, 88)",
-              },
-              {
-                name: "Parqueo Biblioteca",
-                population: 28,
-                color: "rgba(101, 99, 219, 86)",
-              },
-              {
-                name: "Torre De parqueo",
-                population: 80,
-                color: "rgba(42, 41, 92, 36)",
+                color: "green",
               },
             ]}
             width={500}

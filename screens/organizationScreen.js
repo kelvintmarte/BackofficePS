@@ -105,7 +105,7 @@ export default function OrganizationScreen({ navigation }) {
           style={[
             styles.button,
             {
-              backgroundColor: "#6563db",
+              backgroundColor: "#FF4641",
               marginBottom: 10,
               alignSelf: "center",
             },

@@ -159,7 +159,7 @@ export default function parkinglotScreen() {
           style={[
             styles.button,
             {
-              backgroundColor: "#6563db",
+              backgroundColor: "#FF4641",
               marginBottom: 10,
               alignSelf: "center",
             },

@@ -40,7 +40,7 @@ const chartConfig = {
   strokeWidth: 2,
 };
 
-export default function MainScreen() {
+export default function DashboardScreen() {
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
     navigation.navigate("Starting");

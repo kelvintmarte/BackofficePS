@@ -37,24 +37,11 @@ export default function App({ navigation }) {
     const data = {
       email: email.toLowerCase(),
       password: password,
-      password: password,
     };
     axios
       .post(axiosUrl, data, { withCredentials: true })
       .then((response) => {
         console.log(response.data);
-        if (response.data.body.success) {
-          let user = response.data.body.user;
-          console.log("User: ");
-          console.log(user);
-          navigation.navigate("Main", user);
-        } else {
-          setCustomAlert({
-            severity: "error",
-            message: response.data.body.message,
-          });
-          onToggleSnackBar();
-        }
         if (response.data.body.success) {
           let user = response.data.body.user;
           console.log("User: ");

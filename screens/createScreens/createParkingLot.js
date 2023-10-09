@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, TextInput, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
@@ -13,29 +13,32 @@ export default function CreateParkingLot() {
   const [name, setName] = useState("");
   const [totalParking, setTotalParking] = useState("");
   const [description, setDescription] = useState("");
+  const [isBooked, setIsBooked] = useState([]);
 
-  const openWebPage = () => {
-    const url =
-      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
-
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred: ", error);
+  const renderSelectData = () => {
+    useEffect(() => {
+      axios.get("http://localhost:3000/organization/all").then((response) => {
+        console.log(response.data.body);
+        setIsBooked(response.data.body);
       });
+    }, []);
+    return (
+      <select className="select-board-size" style={styles.input} onChange={handleChange}>
+        {isBooked?.map((val) => (
+          <option value={val._id}>{val.organizationName}</option>
+        ))}
+      </select>
+    );
   };
 
+  const handleChange = (e) => {
+    setOrganization(e.target.value);
+  }
   const addParkingLot = async () => {
     try {
       const url = "http://localhost:3000/parking-lot"
       const data = {
-        organization: "64ebb69eca4ddc8ccafb0120",
+        organization,
         name,
         totalParking,
         description,
@@ -106,11 +109,11 @@ export default function CreateParkingLot() {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Create ParkingLot</Text>
         <Text style={styles.label}>Select an Organization:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           onChangeText={(text) => setOrganization(text)}
-        />
-
+        /> */}
+{renderSelectData()}
         <Text style={styles.label}>Name:</Text>
         <TextInput
           style={styles.input}

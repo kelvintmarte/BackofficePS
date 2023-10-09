@@ -12,6 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 export default function CreateParking() {
+  const [isBooked, setIsBooked] = useState([]);
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
     navigation.navigate("Starting");
@@ -43,7 +44,7 @@ export default function CreateParking() {
     try {
       const url = "http://localhost:3000/parking";
       const response = await axios.post(url, {
-        parkingLot: "64ebc5d3d922173c3b5f3a5d",
+        parkingLot,
         parking,
         basePrice,
       });
@@ -53,6 +54,26 @@ export default function CreateParking() {
       console.error("error posting data:", error);
       navigation.navigate("Parking");
     }
+  };
+
+  const handleChange = (e) => {
+    setParkingLot(e.target.value);
+  }
+
+  const renderSelectData = () => {
+    useEffect(() => {
+      axios.get("http://localhost:3000/parking-lot").then((response) => {
+        console.log(response.data.body);
+        setIsBooked(response.data.body);
+      });
+    }, []);
+    return (
+      <select className="select-board-size" style={styles.input} onChange={handleChange}>
+        {isBooked?.map((val) => (
+          <option value={val._id}>{val.name}</option>
+        ))}
+      </select>
+    );
   };
 
   return (
@@ -117,10 +138,11 @@ export default function CreateParking() {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Create Parking</Text>
         <Text style={styles.label}>Select ParkingLot:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           onChangeText={(text) => setParkingLot(text)}
-        />
+        /> */}
+        {renderSelectData()}
         {/* <TouchableOpacity style={styles.comboButton}>
           <Text>
             {selectedValue ? selectedValue : "Select a Parkinglot..."}

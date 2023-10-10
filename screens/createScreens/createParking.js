@@ -104,13 +104,13 @@ export default function CreateParking() {
         >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
-
+        {/* 
         <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Organization")}
         >
           <Text style={styles.sidebarButtonText}>Organization</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           style={styles.sidebarButton}

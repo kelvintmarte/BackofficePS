@@ -85,11 +85,11 @@ export default function CreateParkingLot() {
           <Text style={styles.sidebarButtonText}>Organization</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Configuration")}>
           <Text style={styles.sidebarButtonText}>Configuration</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           style={styles.sidebarButton}
@@ -113,7 +113,7 @@ export default function CreateParkingLot() {
           style={styles.input}
           onChangeText={(text) => setOrganization(text)}
         /> */}
-{renderSelectData()}
+        {renderSelectData()}
         <Text style={styles.label}>Name:</Text>
         <TextInput
           style={styles.input}

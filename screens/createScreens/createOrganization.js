@@ -80,12 +80,12 @@ export default function CreateOrganizationScreen({ navigation }) {
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Organization")}
         >
           <Text style={styles.sidebarButtonText}>Organization</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           style={styles.sidebarButton}

@@ -79,17 +79,17 @@ export default function CreateParkingLot() {
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Organization")}>
           <Text style={styles.sidebarButtonText}>Organization</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={styles.sidebarButton}
           onPress={() => navigation.navigate("Configuration")}>
           <Text style={styles.sidebarButtonText}>Configuration</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}

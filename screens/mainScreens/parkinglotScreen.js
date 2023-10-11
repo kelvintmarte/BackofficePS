@@ -11,21 +11,36 @@ export default function ParkingLotScreen() {
   const handleLogout = () => {
     navigation.navigate("Starting");
   };
-
   const [activeScreen, setActiveScreen] = useState("ParkingLot");
 
-  const navigateToScreen = (screenName) => {
-    setActiveScreen(screenName);
-    navigation.navigate(screenName);
+  const fetchData = () => {
+    axios.get("http://localhost:3000/parking-lot").then((response) => {
+      console.log(response.data.body);
+      setIsBooked(response.data.body);
+    });
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 30000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   const renderTableData = () => {
-    useEffect(() => {
-      axios.get("http://localhost:3000/parking-lot").then((response) => {
-        console.log(response.data.body);
-        setIsBooked(response.data.body);
-      });
-    }, []);
+    // useEffect(() => {
+    //   axios.get("http://localhost:3000/parking-lot").then((response) => {
+    //     console.log(response.data.body);
+    //     setIsBooked(response.data.body);
+    //   });
+    // }, []);
     return (
       <table>
         <thead style={styles.head}>

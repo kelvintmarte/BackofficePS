@@ -13,18 +13,34 @@ export default function parkingScreen() {
   };
   const [activeScreen, setActiveScreen] = useState("Parking");
 
-  const navigateToScreen = (screenName) => {
-    setActiveScreen(screenName);
-    navigation.navigate(screenName);
+  const fetchData = () => {
+    axios.get("http://localhost:3000/parking").then((response) => {
+      console.log(response.data.body);
+      setIsBooked(response.data.body);
+    });
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 30000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   const renderTableData = () => {
-    useEffect(() => {
-      axios.get("http://localhost:3000/parking").then((response) => {
-        console.log(response.data.body);
-        setIsBooked(response.data.body);
-      });
-    }, []);
+    // useEffect(() => {
+    //   axios.get("http://localhost:3000/parking").then((response) => {
+    //     console.log(response.data.body);
+    //     setIsBooked(response.data.body);
+    //   });
+    // }, []);
     return (
       <table>
         <thead style={styles.head}>

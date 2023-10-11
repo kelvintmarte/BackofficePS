@@ -65,6 +65,10 @@ export default function App({ navigation }) {
       });
   };
 
+  const handleEnterPress = () => {
+    SendToBackend();
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/parkingspot_crop_logo.png")} />
@@ -81,8 +85,8 @@ export default function App({ navigation }) {
         mode='outlined'
         onChangeText={(password) => setPassword(password)}
         secureTextEntry={true}
+        onSubmitEditing={handleEnterPress}
       />
-      <Text style={{ marginTop: 15, color: '#6563DB' }} onPress={() => navigation.navigate("ForgotPassword")}>Forgot Password?</Text>
       <Button
         style={styles.reducedMarginBtn}
         mode='contained'

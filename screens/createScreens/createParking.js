@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingLeft: 8,
+    borderRadius: 10, // Add rounded border
   },
   comboButton: {
     height: 40,

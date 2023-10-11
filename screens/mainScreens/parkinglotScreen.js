@@ -42,25 +42,27 @@ export default function ParkingLotScreen() {
     //   });
     // }, []);
     return (
-      <table>
-        <thead style={styles.head}>
-          <tr>
-            <td>Name</td>
-            <td>Total Parking</td>
-            <td>Description</td>
-          </tr>
-        </thead>
-        <tbody>
-          {isBooked?.map((val) => (
-            <tr style={styles.text}>
-              <td>{val.name}</td>
-              <td>{val.totalParking}</td>
-              <td>{val.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )
+      <View style={styles.tableContainer}>
+        <View style={styles.tableHeader}>
+          <Text style={styles.headerText}>Name</Text>
+          <Text style={styles.headerText}>Total Parking</Text>
+          <Text style={styles.headerText}>Description</Text>
+        </View>
+        {isBooked?.map((val, index) => (
+          <View
+            key={index}
+            style={[
+              styles.tableRow,
+              index % 2 === 0 ? styles.evenRow : styles.oddRow,
+            ]}
+          >
+            <Text style={styles.cellText}>{val.name}</Text>
+            <Text style={styles.cellText}>{val.totalParking}</Text>
+            <Text style={styles.cellText}>{val.description}</Text>
+          </View>
+        ))}
+      </View>
+    );
   }
 
   return (
@@ -248,5 +250,44 @@ const styles = StyleSheet.create({
   },
   activeButtonText: {
     color: "lightgray",
+  },
+
+  tableContainer: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 5,
+    backgroundColor: "white",
+    marginTop: 10,
+    padding: 10,
+  },
+  tableHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderColor: "#ddd",
+    paddingBottom: 5,
+    marginBottom: 5,
+  },
+  headerText: {
+    flex: 1,
+    fontWeight: "bold",
+    fontSize: 16,
+    textAlign: "center",
+  },
+  tableRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  evenRow: {
+    backgroundColor: "#f2f2f2",
+  },
+  oddRow: {
+    backgroundColor: "#fff",
+  },
+  cellText: {
+    flex: 1,
+    textAlign: "center",
+    fontSize: 14,
   },
 });

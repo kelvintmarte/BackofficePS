@@ -19,25 +19,25 @@ export default function CreateParkingLot() {
   const [totalParkingError, setTotalParkingError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
-  const renderSelectData = () => {
-    useEffect(() => {
-      axios.get("http://localhost:3000/organization/all").then((response) => {
-        console.log(response.data.body);
-        setIsBooked(response.data.body);
-      });
-    }, []);
-    return (
-      <select
-        className="select-board-size"
-        style={styles.input}
-        onChange={handleChange}
-      >
-        {isBooked?.map((val) => (
-          <option value={val._id}>{val.organizationName}</option>
-        ))}
-      </select>
-    );
-  };
+  // const renderSelectData = () => {
+  //   useEffect(() => {
+  //     axios.get("http://localhost:3000/organization/all").then((response) => {
+  //       console.log(response.data.body);
+  //       setIsBooked(response.data.body);
+  //     });
+  //   }, []);
+  //   return (
+  //     <select
+  //       className="select-board-size"
+  //       style={styles.input}
+  //       onChange={handleChange}
+  //     >
+  //       {isBooked?.map((val) => (
+  //         <option value={val._id}>{val.organizationName}</option>
+  //       ))}
+  //     </select>
+  //   );
+  // };
 
   const handleChange = (e) => {
     setOrganization(e.target.value);
@@ -51,7 +51,7 @@ export default function CreateParkingLot() {
       setNameError("Name is required");
       return;
     }
-    if (!totalParking) {
+    if (isNaN(totalParking)) {
       setTotalParkingError("Total Parking is required");
       return;
     }
@@ -63,7 +63,7 @@ export default function CreateParkingLot() {
     try {
       const url = "http://localhost:3000/parking-lot";
       const data = {
-        organization,
+        organization: "64b17c3c40102dc7689d776e",
         name,
         totalParking,
         description,
@@ -75,7 +75,6 @@ export default function CreateParkingLot() {
       navigation.navigate("ParkingLot");
     } catch (error) {
       console.error("Error posting data:", error);
-      navigation.navigate("ParkingLot");
     }
   };
 
@@ -138,12 +137,12 @@ export default function CreateParkingLot() {
 
       <View style={styles.mainContent}>
         <Text style={styles.title}>Create ParkingLot</Text>
-        <Text style={styles.label}>Select an Organization:</Text>
+        {/* <Text style={styles.label}>Select an Organization:</Text>
         {/* <TextInput
           style={styles.input}
           onChangeText={(text) => setOrganization(text)}
         /> */}
-        {renderSelectData()}
+        {/* {renderSelectData()} */}
         <Text style={styles.label}>Name:</Text>
         <TextInput
           style={styles.input}
@@ -201,6 +200,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#cccccc", // Sidebar background color
     padding: 5,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginBottom: 8,
   },
   sidebarButton: {
     marginBottom: 10,

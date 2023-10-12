@@ -15,6 +15,7 @@ import supportScreen from '../screens/supportScreen.js';
 import DashboardScreen from '../screens/mainScreens/dashboardScreen.js';
 import ParkingLotScreen from "../screens/mainScreens/parkinglotScreen.js"
 import ReservationScreen from '../screens/mainScreens/reservationScreen.js';
+import ProfileScreen from '../screens/mainScreens/profileScreen.js';
 
 const App = () => {
     const router = useRouter();
@@ -35,6 +36,8 @@ const App = () => {
                 <Stack.Screen name="Support" component={supportScreen} />
                 <Stack.Screen name="Dashboard" component={DashboardScreen} />
                 <Stack.Screen name="Reservation" component={ReservationScreen} />
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

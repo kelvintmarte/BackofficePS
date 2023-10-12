@@ -95,6 +95,16 @@ export default function DebugScreen({ navigation }) {
             >
                 Documentation
             </Button>
+
+            <Button
+                style={styles.button}
+                icon="send"
+                mode="contained"
+                onPress={() => navigation.navigate("ProfileScreen")}
+                width="80%"
+            >
+                Profile Screen
+            </Button>
         </View>
     );
 }

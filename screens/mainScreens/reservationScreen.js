@@ -5,7 +5,7 @@ import { Table } from "react-native-table-component";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-export default function parkingScreen() {
+export default function ReservationScreen() {
   const [isBooked, setIsBooked] = useState([]);
   const navigation = useNavigation(); // Initialize navigation
   const handleLogout = () => {
@@ -85,12 +85,12 @@ export default function parkingScreen() {
             styles.sidebarButton,
             activeScreen === "Parking" && styles.activeButton,
           ]}
-          onPress={() => navigation.navigate("Parking")}
+          onPress={() => navigation.navigate("Reservation")}
         >
           <Text style={[
             styles.sidebarButtonText,
             activeScreen === "Parking" && styles.activeButtonText,
-          ]}>Parkings</Text>
+          ]}>Reservations</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -132,7 +132,7 @@ export default function parkingScreen() {
 
       {/* Main content */}
       <View style={styles.mainContent}>
-        <Text style={styles.title}>Parking</Text>
+        <Text style={styles.title}>Reservations</Text>
         <Table borderStyle={{ borderWidth: 1 }}>
           {/*<Row
             data={["Estacionamiento", "Parqueo", "Precio"]}
@@ -155,7 +155,7 @@ export default function parkingScreen() {
         >
           <Text style={styles.buttonText}>Add Parking</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[
             styles.button,
             {
@@ -167,7 +167,7 @@ export default function parkingScreen() {
           onPress={() => console.log("Delete button selected")}
         >
           <Text style={styles.buttonText}>Delete Parking</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

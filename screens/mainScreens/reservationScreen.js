@@ -153,7 +153,7 @@ export default function ReservationScreen() {
           ]}
           onPress={() => navigation.navigate("CreateParking")}
         >
-          <Text style={styles.buttonText}>Add Parking</Text>
+          <Text style={styles.buttonText}>Add Reservation</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity
           style={[

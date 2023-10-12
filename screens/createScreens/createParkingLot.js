@@ -15,6 +15,10 @@ export default function CreateParkingLot() {
   const [description, setDescription] = useState("");
   const [isBooked, setIsBooked] = useState([]);
 
+  const [nameError, setNameError] = useState("");
+  const [totalParkingError, setTotalParkingError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+
   const renderSelectData = () => {
     useEffect(() => {
       axios.get("http://localhost:3000/organization/all").then((response) => {
@@ -23,7 +27,11 @@ export default function CreateParkingLot() {
       });
     }, []);
     return (
-      <select className="select-board-size" style={styles.input} onChange={handleChange}>
+      <select
+        className="select-board-size"
+        style={styles.input}
+        onChange={handleChange}
+      >
         {isBooked?.map((val) => (
           <option value={val._id}>{val.organizationName}</option>
         ))}
@@ -33,24 +41,41 @@ export default function CreateParkingLot() {
 
   const handleChange = (e) => {
     setOrganization(e.target.value);
-  }
+  };
   const addParkingLot = async () => {
+    setNameError("");
+    setTotalParkingError("");
+    setDescriptionError("");
+
+    if (!name) {
+      setNameError("Name is required");
+      return;
+    }
+    if (!totalParking) {
+      setTotalParkingError("Total Parking is required");
+      return;
+    }
+    if (!description) {
+      setDescriptionError("Description is required");
+      return;
+    }
+
     try {
-      const url = "http://localhost:3000/parking-lot"
+      const url = "http://localhost:3000/parking-lot";
       const data = {
         organization,
         name,
         totalParking,
         description,
         latitude: 18.483006257009542,
-        longitude: -69.93890390277178
+        longitude: -69.93890390277178,
       };
-      const response = await axios.post(url, data)
+      const response = await axios.post(url, data);
       console.log("POST response:", response.data);
-      navigation.navigate("ParkingLot")
+      navigation.navigate("ParkingLot");
     } catch (error) {
       console.error("Error posting data:", error);
-      navigation.navigate("ParkingLot")
+      navigation.navigate("ParkingLot");
     }
   };
 
@@ -63,19 +88,22 @@ export default function CreateParkingLot() {
         />
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Dashboard")}>
+          onPress={() => navigation.navigate("Dashboard")}
+        >
           <Text style={styles.sidebarButtonText}>Dashboard</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}>
+          onPress={() => navigation.navigate("Parking")}
+        >
           <Text style={styles.sidebarButtonText}>Parkings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("ParkingLot")}>
+          onPress={() => navigation.navigate("ParkingLot")}
+        >
           <Text style={styles.sidebarButtonText}>Parking Lots</Text>
         </TouchableOpacity>
 
@@ -87,23 +115,25 @@ export default function CreateParkingLot() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Configuration")}>
+          onPress={() => navigation.navigate("Configuration")}
+        >
           <Text style={styles.sidebarButtonText}>Configuration</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Documentation")}>
+          onPress={() => navigation.navigate("Documentation")}
+        >
           <Text style={styles.sidebarButtonText}>Documentation</Text>
         </TouchableOpacity>
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       <View style={styles.mainContent}>
@@ -117,24 +147,41 @@ export default function CreateParkingLot() {
         <Text style={styles.label}>Name:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => {
+            setName(text);
+            setNameError("");
+          }}
         />
+        {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
 
         <Text style={styles.label}>Total Parking:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setTotalParking(text)}
+          onChangeText={(text) => {
+            setTotalParking(text);
+            setTotalParkingError("");
+          }}
         />
+        {totalParkingError ? (
+          <Text style={styles.errorText}>{totalParkingError}</Text>
+        ) : null}
 
         <Text style={styles.label}>Description:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setDescription(text)}
+          onChangeText={(text) => {
+            setDescription(text);
+            setDescriptionError("");
+          }}
         />
+        {descriptionError ? (
+          <Text style={styles.errorText}>{descriptionError}</Text>
+        ) : null}
 
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
-          onPress={() => addParkingLot()}>
+          onPress={() => addParkingLot()}
+        >
           <Text style={styles.buttonText}>Add ParkingLot</Text>
         </TouchableOpacity>
       </View>
@@ -169,7 +216,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
-    marginLeft: "250px"
+    marginLeft: "250px",
   },
   title: {
     fontSize: 24,

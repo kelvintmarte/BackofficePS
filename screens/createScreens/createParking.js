@@ -21,26 +21,23 @@ export default function CreateParking() {
   const [parking, setparkingInput] = useState("");
   const [basePrice, setpriceInput] = useState(0.0);
 
-  const openWebPage = () => {
-    // Replace this URL with your documentation URL
-    const url =
-      "https://drive.google.com/file/d/1twDqTaibg9TJMElt-7pU_kMkKDff0DWy/view";
-
-    // Open the URL in the device's browser
-    Linking.openURL(url)
-      .then((result) => {
-        if (result) {
-          console.log("OK");
-        } else {
-          console.log("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred: ", error);
-      });
-  };
+  const [parkingError, setParkingError] = useState("");
+  const [priceError, setPriceError] = useState("");
 
   const addParking = async () => {
+    setPriceError("");
+    setParkingError("");
+
+    if (!parking) {
+      setParkingError("Parking is required");
+      return;
+    }
+
+    if (isNaN(basePrice)) {
+      setPriceError("Price must be a valid number");
+      return;
+    }
+
     try {
       const url = "http://localhost:3000/parking";
       const response = await axios.post(url, {
@@ -52,13 +49,12 @@ export default function CreateParking() {
       navigation.navigate("Parking");
     } catch (error) {
       console.error("error posting data:", error);
-      navigation.navigate("Parking");
     }
   };
 
   const handleChange = (e) => {
     setParkingLot(e.target.value);
-  }
+  };
 
   const renderSelectData = () => {
     useEffect(() => {
@@ -68,7 +64,11 @@ export default function CreateParking() {
       });
     }, []);
     return (
-      <select className="select-board-size" style={styles.input} onChange={handleChange}>
+      <select
+        className="select-board-size"
+        style={styles.input}
+        onChange={handleChange}
+      >
         {isBooked?.map((val) => (
           <option value={val._id}>{val.name}</option>
         ))}
@@ -128,11 +128,11 @@ export default function CreateParking() {
 
         {/* Log Out Button */}
         <TouchableOpacity
-          style={[styles.sidebarButton, { backgroundColor: '#FF4641' }]}
-          onPress={handleLogout}>
+          style={[styles.sidebarButton, { backgroundColor: "#FF4641" }]}
+          onPress={handleLogout}
+        >
           <Text style={styles.sidebarButtonText}>Log Out</Text>
         </TouchableOpacity>
-
       </View>
 
       <View style={styles.mainContent}>
@@ -152,14 +152,23 @@ export default function CreateParking() {
         <Text style={styles.label}>Parking:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setparkingInput(text)}
+          onChangeText={(text) => {
+            setparkingInput(text);
+            setParkingError("");
+          }}
         />
-
+        {parkingError ? (
+          <Text style={styles.errorText}>{parkingError}</Text>
+        ) : null}
         <Text style={styles.label}>Price:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setpriceInput(parseFloat(text))}
+          onChangeText={(text) => {
+            setpriceInput(parseFloat(text));
+            setPriceError("");
+          }}
         />
+        {priceError ? <Text style={styles.errorText}>{priceError}</Text> : null}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#6563db" }]}
           onPress={() => addParking()}
@@ -175,6 +184,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row", // Sidebar on the left, content on the right
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginBottom: 8,
   },
   sidebar: {
     height: "100%",
@@ -198,7 +212,7 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 4, // Adjust the flex ratio as needed
     padding: 20,
-    marginLeft: "250px"
+    marginLeft: "250px",
   },
   title: {
     fontSize: 24,

@@ -56,7 +56,7 @@ export default function supportScreen() {
                     style={styles.sidebarButton}
                     onPress={() => navigation.navigate("Parking")}
                 >
-                    <Text style={styles.sidebarButtonText}>Parkings</Text>
+                    <Text style={styles.sidebarButtonText}>Reservation</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

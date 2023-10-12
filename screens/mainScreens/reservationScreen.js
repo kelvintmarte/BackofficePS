@@ -44,9 +44,9 @@ export default function ReservationScreen() {
     return (
       <View style={styles.tableContainer}>
         <View style={styles.tableHeader}>
-          <Text style={styles.headerText}>Estacionamiento</Text>
-          <Text style={styles.headerText}>Parqueo</Text>
-          <Text style={styles.headerText}>Precio</Text>
+          <Text style={styles.headerText}>Name</Text>
+          <Text style={styles.headerText}>Parking</Text>
+          <Text style={styles.headerText}>Availability</Text>
         </View>
         {isBooked?.map((val, index) => (
           <View
@@ -58,7 +58,7 @@ export default function ReservationScreen() {
           >
             <Text style={styles.cellText}>{val.parkingLot.name}</Text>
             <Text style={styles.cellText}>{val.parking}</Text>
-            <Text style={styles.cellText}>{val.basePrice}</Text>
+            <Text style={styles.cellText}>{val.availability}</Text>
           </View>
         ))}
       </View>

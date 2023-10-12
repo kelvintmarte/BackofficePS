@@ -14,7 +14,7 @@ export default function ParkingLotScreen() {
   const [activeScreen, setActiveScreen] = useState("ParkingLot");
 
   const fetchData = () => {
-    axios.get("http://localhost:3000/parking-lot/64b17c3c40102dc7689d776e").then((response) => {
+    axios.get("http://localhost:3000/parking-lot").then((response) => {
       console.log(response.data.body);
       setIsBooked(response.data.body);
     });

@@ -14,7 +14,7 @@ export default function ParkingLotScreen() {
   const [activeScreen, setActiveScreen] = useState("ParkingLot");
 
   const fetchData = () => {
-    axios.get("http://localhost:3000/parking-lot").then((response) => {
+    axios.get("http://localhost:3000/parking-lot/64b17c3c40102dc7689d776e").then((response) => {
       console.log(response.data.body);
       setIsBooked(response.data.body);
     });
@@ -46,7 +46,6 @@ export default function ParkingLotScreen() {
         <View style={styles.tableHeader}>
           <Text style={styles.headerText}>Name</Text>
           <Text style={styles.headerText}>Total Parking</Text>
-          <Text style={styles.headerText}>Description</Text>
         </View>
         {isBooked?.map((val, index) => (
           <View
@@ -58,7 +57,6 @@ export default function ParkingLotScreen() {
           >
             <Text style={styles.cellText}>{val.name}</Text>
             <Text style={styles.cellText}>{val.totalParking}</Text>
-            <Text style={styles.cellText}>{val.description}</Text>
           </View>
         ))}
       </View>
@@ -82,9 +80,9 @@ export default function ParkingLotScreen() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
+          onPress={() => navigation.navigate("Reservation")}
         >
-          <Text style={styles.sidebarButtonText}>Parkings</Text>
+          <Text style={styles.sidebarButtonText}>Reservations</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -156,7 +154,7 @@ export default function ParkingLotScreen() {
         >
           <Text style={styles.buttonText}>Add Parking Lot</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[
             styles.button,
             {
@@ -168,7 +166,7 @@ export default function ParkingLotScreen() {
           onPress={() => getData()}
         >
           <Text style={styles.buttonText}>Delete Parking Lot</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

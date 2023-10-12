@@ -42,9 +42,9 @@ export default function OrganizationScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
+          onPress={() => navigation.navigate("Reservation")}
         >
-          <Text style={styles.sidebarButtonText}>Parkings</Text>
+          <Text style={styles.sidebarButtonText}>Reservations</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -101,7 +101,7 @@ export default function OrganizationScreen({ navigation }) {
         >
           <Text style={styles.buttonText}>Add Organization</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[
             styles.button,
             {
@@ -113,7 +113,7 @@ export default function OrganizationScreen({ navigation }) {
           onPress={() => getData()}
         >
           <Text style={styles.buttonText}>Delete Organization</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

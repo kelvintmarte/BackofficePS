@@ -36,9 +36,9 @@ export default function configScreen() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
+          onPress={() => navigation.navigate("Reservation")}
         >
-          <Text style={styles.sidebarButtonText}>Parkings</Text>
+          <Text style={styles.sidebarButtonText}>Reservations</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -96,6 +96,19 @@ export default function configScreen() {
           onPress={() => toggleLanguage()}
         >
           <Text style={styles.buttonText}>Change Language</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: "#6563db",
+              marginBottom: 10,
+              alignSelf: "center",
+            },
+          ]}
+          onPress={() => toggleLanguage()}
+        >
+          <Text style={styles.buttonText}>Change Theme</Text>
         </TouchableOpacity>
       </View>
     </View>

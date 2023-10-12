@@ -93,9 +93,9 @@ export default function CreateParking() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => navigation.navigate("Parking")}
+          onPress={() => navigation.navigate("Reservation")}
         >
-          <Text style={styles.sidebarButtonText}>Parkings</Text>
+          <Text style={styles.sidebarButtonText}>Reservations</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
